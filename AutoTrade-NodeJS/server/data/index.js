@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+
 module.exports = function(config, models) {
     mongoose.Promise = global.Promise;
 
@@ -8,6 +9,18 @@ module.exports = function(config, models) {
             console.log(err.message);
         }
     });
+
+    const db = mongoose.connection;
+
+    db.on('error', (err) => {
+        console.log('Connection failed\n!' + err);
+    })
+
+    db.on('open', () => {
+        console.log('Connection succsess!');
+    })
+
+    
 
     const messageData = require('./messages-data')(models.Message);
     const userData = require('./users-data')(models.User);
@@ -20,4 +33,5 @@ module.exports = function(config, models) {
         advertData,
         vehicleData
     };
+
 };

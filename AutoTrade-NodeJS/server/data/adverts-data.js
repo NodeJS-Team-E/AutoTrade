@@ -1,10 +1,11 @@
 /* globals Promise */
 'use strict';
 
+
 module.exports = function(Advert) {
     function create(options) {
 
-        const advert = new Advert({
+        var advert = new Advert({
             title: options.title,
             description: options.description,
             vehicle: options.vehicle,
