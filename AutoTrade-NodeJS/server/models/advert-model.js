@@ -6,7 +6,6 @@ const mongoose = require('mongoose'),
 
 const requiredMessage = '{PATH} is required';
 
-
 let advertSchema = mongoose.Schema({
     title: {
         type: String,

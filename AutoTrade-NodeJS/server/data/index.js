@@ -20,18 +20,14 @@ module.exports = function(config, models) {
         console.log('Connection succsess!');
     })
 
-    
-
-    const messageData = require('./messages-data')(models.Message);
-    const userData = require('./users-data')(models.User);
-    const advertData = require('./adverts-data')(models.Advert);
-    const vehicleData = require('./vehicles-data')(models.Vehicle);
-
+    const messageData = require('./messages-data')(models.Message),
+        userData = require('./users-data')(models.User),
+        advertData = require('./adverts-data')(models.Advert),
+        vehicleData = require('./vehicles-data')(models.Vehicle);
     return {
         messageData,
         userData,
         advertData,
         vehicleData
     };
-
 };

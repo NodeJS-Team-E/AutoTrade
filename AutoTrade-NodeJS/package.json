@@ -4,18 +4,24 @@
   "description": "course project",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.15.2",
+    "cookie-parser": "^1.4.3",
     "express": "^4.14.0",
     "express-session": "^1.14.2",
+    "materialize-css": "^0.97.8",
     "mongodb": "^2.2.11",
     "mongoose": "^4.7.0",
+    "nodemon": "^1.11.0",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
     "pug": "^2.0.0-beta6",
+    "pug-cli": "^1.0.0-alpha6",
     "typings": "^2.0.0"
   }
 }
