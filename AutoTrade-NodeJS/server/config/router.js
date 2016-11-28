@@ -7,9 +7,12 @@ module.exports = app => {
     router.get("/", (req, res) => {
         res.redirect("/home");
     });
-    router.get("/home", homeController.getHome)
+    router
+        .get("/home", homeController.getHome)
         .get("/adverts", advertsController.getAll)
-        .get("/adverts/:id", advertsController.getById);
+        .get("/adverts/:id", advertsController.getById)
+        .get("/create-advert", advertsController.getCreateForm)
+        .post("/create-advert", advertsController.create);
 
 
     app.use(router);

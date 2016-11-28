@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+html(lang="en")
+head
+    meta(charset="UTF-8")
+    title Create Advert
+    link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css")
+    link(href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet")    
+body   
+h4 Create Advert
+form(name="create" method="post" class="row")
+ div(class="col s12")
+    ul(class="createBox" id="createBox")
+      li(class="title")
+        div(class="input-field col s6")
+            strong Title:
+            input(type="text" name="title")
+      li(class="price") 
+        div(class="input-field col s6") 
+          strong Price:
+          input(type="text" name="price" class="validate")      
+      li(class="category")
+        div(class="input-field col s6" ) 
+          strong Category: 
+          select(name="cat" class="browser-default  grey lighten-3")
+            option(selected="" value="car") Car
+            option(value="truck") Trucks 
+            option(value="motorcycle") Motorcycles    
+      
+      li(class="manufacturer")
+        div(class="input-field col s6")
+            strong Manufacturer:
+            select(name="manufacturer" class="browser-default  grey lighten-3")
+                option(selected="" value="") Select Make
+                option(label="Acura" value="acura") Acura
+                option(label="Alfa Romeo" value="alfa romeo") Alfa Romeo
+                option(label="Aston Martin" value="aston martin") Aston Martin
+                option(label="Audi" value="audi") Audi
+                option(label="Bentley" value="bentley") Bentley
+                option(label="BMW" value="bmw") BMW
+                option(label="Buick" value="buick") Buick
+                option(label="Cadillac" value="cadillac") Cadillac
+                option(label="Chevrolet" value="chevrolet") Chevrolet
+                option(label="Chrysler" value="chrysler") Chrysler
+                option(label="Dodge" value="dodge") Dodge
+                option(label="Ferrari" value="ferrari") Ferrari
+                option(label="FIAT" value="fiat") FIAT
+                option(label="Ford" value="ford") Ford
+                option(label="Genesis" value="genesis") Genesis
+                option(label="GMC" value="gmc") GMC
+                option(label="Honda" value="honda") Honda
+                option(label="Hyundai" value="hyundai") Hyundai
+                option(label="Infiniti" value="infiniti") Infiniti
+                option(label="Jaguar" value="jaguar") Jaguar
+                option(label="Jeep" value="jeep") Jeep
+                option(label="Kia" value="kia") Kia
+                option(label="Lamborghini" value="lamborghini") Lamborghini
+                option(label="Land Rover" value="land rover") Land Rover
+                option(label="Lexus" value="lexus") Lexus
+                option(label="Lincoln" value="lincoln") Lincoln
+                option(label="Lotus" value="lotus") Lotus
+                option(label="Maserati" value="maserati") Maserati
+                option(label="Mazda" value="mazda") Mazda
+                option(label="McLaren" value="mclaren") McLaren
+                option(label="Mercedes-Benz" value="mercedes benz") Mercedes-Benz
+                option(label="MINI" value="mini") MINI
+                option(label="Nissan" value="nissan") Nissan
+                option(label="Porsche" value="porshe") Porsche
+                option(label="Rolls-Royce" value="rolls-royce") Rolls-Royce
+                option(label="smart" value="smart") Smart
+                option(label="Subaru" value="subaru") Subaru
+                option(label="Tesla" value="tesla") Tesla
+                option(label="Toyota" value="toyota") Toyota
+                option(label="Volkswagen" value="volkswagen") Volkswagen
+                option(label="Volvo" value="volvo") Volvo    
+      li(id="fuel") 
+        div(class="input-field col s6") 
+          strong Fuel:
+          select(name="fuel-type" class="browser-default grey lighten-3") 
+            option(selected="" value="") Select Fuel-type 
+            option(value="gasoline") Gasoline
+            option(value="diesel") Diesel 
+            option(value="electric") Electric 
+            option(value="gasoline hybrid") Gasoline Hybrid
+      li(class="trans")       
+        div(class="input-field col s6") 
+          strong Transmission: 
+          select(name="transmission" class="browser-default  grey lighten-3")
+            option(selected="" value="") Select transmission
+            option(value="Automatic") Automatic 
+            option(value="Automanual") Automanual 
+            option(value="Manual") Manual 
+      li(class="year-range") 
+        div(class="input-field col s6")
+          strong Year Range: 
+          select(name="year" class="browser-default  grey lighten-3") 
+            option(selected="" value="") Select year  
+            option(value="2016") 2016 
+            option(value="2015") 2015 
+            option(value="2014") 2014 
+            option(value="2013") 2013 
+            option(value="2012") 2012 
+            option(value="2011") 2011 
+            option(value="2010") 2010 
+            option(value="2009") 2009 
+            option(value="2008") 2008 
+            option(value="2007") 2007 
+            option(value="2006") 2006 
+            option(value="2005") 2005 
+            option(value="2004") 2004 
+            option(value="2003") 2003 
+            option(value="2002") 2002 
+            option(value="2001") 2001 
+            option(value="2000") 2000
+      li(class="color")        
+        div(class="input-field col s6") 
+          strong Color:
+          select(name="color" class="browser-default  grey lighten-3") 
+            option(selected="" value="") Choose Color
+            option(value="black") Black
+            option(value="blue") Blue
+            option(value="white") White 
+            option(value="red") Red 
+      li(class="region")      
+        div(class="input-field col s6") 
+          strong Region:
+          select(name="location" class="browser-default  grey lighten-3") 
+            option(selected="" value="") Choose Region
+            option(value="sofia") Sofia
+            option(value="plovdiv") Plovdiv
+            option(value="varna") Varna
+            option(value="burgas") Burgas
+            option(value="pernik") Pernik
+            option(value="montana") Montana
+            option(value="dobrich") Dobrich
+            option(value="forda-na-mladost-1") Forda na mladost 1
+      li(class="mileage")
+        div(class="input-field col s6")
+         strong Set Mileage:   
+         input(type="text" name="mileage" class="validate")      
+      li(class="desc")
+        div(class="input-field col s6")
+            strong Description:
+            input(type="text" name="description")
+      li(class="pic")
+        div(class="input-field col s6")
+        strong Picture(from url):
+        input(type="url" name="picture" class="input-field col s6")                  
+    button(type="submit" class="waves-effect waves-dark btn right") Create! 

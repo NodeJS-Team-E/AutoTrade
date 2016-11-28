@@ -1,3 +1,4 @@
+block main
 <!DOCTYPE html>
 html(lang="en")
 head
@@ -18,21 +19,8 @@ block nav
                 li
                   a(href="#") Register
                 li
+                  a(href="/create-advert") Create Advert
+                li
                   a(href="#") About
                   
- h1 Welcome!
- div.row
-  form.col.s12
-   div.row
-    div.input-field.col.s4
-     label(for="producer") Producer
-     input(type="text" id="producer")
-   div.row  
-    div.input-field.col.s4
-     label(for="model") Model
-     input(type="text" id="model")
-   div.row  
-    div.input-field.col.s4
-     label(for="year") Year
-     input(type="text" id="year")
-     a.btn.waves-effect.waves-light.right(href="#") Search
+include search-panel.pug 

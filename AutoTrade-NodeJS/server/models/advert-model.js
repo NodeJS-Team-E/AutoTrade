@@ -1,9 +1,7 @@
 /* globals require module String Number Date */
 'use strict'
-
 const mongoose = require('mongoose'),
     Schema = mongoose.Schema;
-
 const requiredMessage = '{PATH} is required';
 
 let advertSchema = mongoose.Schema({
@@ -16,7 +14,7 @@ let advertSchema = mongoose.Schema({
     },
     vehicle: {
         type: Schema.Types.ObjectId,
-        ref: 'Vehicle'
+        ref: "Vehicle",
     },
     postedBy: {
         type: Schema.Types.ObjectId,
