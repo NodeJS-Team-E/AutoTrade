@@ -1,155 +1,156 @@
-h4 Search adverts
-form(id="search" name="search" method="get" class="row")
-  div(class="col s12")
-    ul(class="searchBox" id="searchBox")
-      li(class="category")
-        div(class="input-field col s6" ) 
-          strong Category: 
-          select(name="cat" class="browser-default  grey lighten-3")
-            option(selected="" value="Cars and SUV's") Cars and SUV's
-            option(value="Trucks") Trucks 
-            option(value="Motorcycles") Motorcycles
-      li(class="sort")
-        div(class="input-field col s6")        
-          strong Sort By:
-          select(name="sort" class="browser-default grey lighten-3") 
-            option(selected="" value="1") Newest adverts  
-            option(value="2") Price - largest 
-            option(value="3") Price - lowest  
-            option(value="4") Year
-      li(class="maker")
-        div(class="input-field col s6" )
-          strong Manufacturer:
-          select(id="manufacturer" class="browser-default grey lighten-3")
-            option(value="" selected="selected") All Makes
-            option(label="Acura" value="acura") Acura
-            option(label="Alfa Romeo" value="alfa romeo") Alfa Romeo
-            option(label="Aston Martin" value="aston martin") Aston Martin
-            option(label="Audi" value="audi") Audi
-            option(label="Bentley" value="bentley") Bentley
-            option(label="BMW" value="bmw") BMW
-            option(label="Buick" value="buick") Buick
-            option(label="Cadillac" value="cadillac") Cadillac
-            option(label="Chevrolet" value="chevrolet") Chevrolet
-            option(label="Chrysler" value="chrysler") Chrysler
-            option(label="Dodge" value="dodge") Dodge
-            option(label="Ferrari" value="ferrari") Ferrari
-            option(label="FIAT" value="fiat") FIAT
-            option(label="Ford" value="ford") Ford
-            option(label="Genesis" value="genesis") Genesis
-            option(label="GMC" value="gmc") GMC
-            option(label="Honda" value="honda") Honda
-            option(label="Hyundai" value="hyundai") Hyundai
-            option(label="Infiniti" value="infiniti") Infiniti
-            option(label="Jaguar" value="jaguar") Jaguar
-            option(label="Jeep" value="jeep") Jeep
-            option(label="Kia" value="kia") Kia
-            option(label="Lamborghini" value="lamborghini") Lamborghini
-            option(label="Land Rover" value="land rover") Land Rover
-            option(label="Lexus" value="lexus") Lexus
-            option(label="Lincoln" value="lincoln") Lincoln
-            option(label="Lotus" value="lotus") Lotus
-            option(label="Maserati" value="maserati") Maserati
-            option(label="Mazda" value="mazda") Mazda
-            option(label="McLaren" value="mclaren") McLaren
-            option(label="Mercedes-Benz" value="mercedes benz") Mercedes-Benz
-            option(label="MINI" value="mini") MINI
-            option(label="Nissan" value="nissan") Nissan
-            option(label="Porsche" value="porshe") Porsche
-            option(label="Rolls-Royce" value="rolls-royce") Rolls-Royce
-            option(label="smart" value="smart") Smart
-            option(label="Subaru" value="subaru") Subaru
-            option(label="Tesla" value="tesla") Tesla
-            option(label="Toyota" value="toyota") Toyota
-            option(label="Volkswagen" value="volkswagen") Volkswagen
-            option(label="Volvo" value="volvo") Volvo         
-      li(class="price")
-        div(class="input-field col s6" )
-          strong Price: 
-          select(id="minPrice" class="browser-default grey lighten-3")
-            option(selected="") Min Price        
-            option(value="45000") &euro;45000  
-            option(value="50000") &euro;50000  
-            option(value="55000") &euro;55000   
-            option(value="70000") &euro;70000  
-            option(value="80000") &euro;80000  
-            option(value="100000") &euro;100000 
-            option(value="120000") &euro;120000  
-            option(value="140000") &euro;140000  
-            option(value="160000") &euro;160000  
-            option(value="180000") &euro;180000             
-          select(id="maxPrice" class="browser-default  grey lighten-3")
-            option(selected="") Max Price
-            option(value="3000000") &euro;3000000
-            option(value="2000000") &euro;2000000 
-            option(value="1500000") &euro;1500000 
-            option(value="1000000") &euro;1000000 
-            option(value="800000") &euro;800000 
-            option(value="700000") &euro;700000 
-            option(value="600000") &euro;600000 
-            option(value="500000") &euro;500000
-      li(id="fuel")
-        div(class="input-field col s6" )  
-          strong Fuel:
-          select(name="fuel-type" class="browser-default grey lighten-3") 
-            option(selected="" value="") All 
-            option(value="Gasoline") Gasoline
-            option(value="Diesel") Diesel 
-            option(value="Electric") Electric 
-            option(value="Gasoline Hybrid") Gasoline Hybrid
-      li(class="trans")
-        div(class="input-field col s6" )       
-          strong Transmission: 
-          select(name="transmission" class="browser-default  grey lighten-3")
-            option(selected="" value="") Any
-            option(value="Automatic") Automatic 
-            option(value="Automanual") Automanual 
-            option(value="Manual") Manual 
-      li(class="year-range")
-        div(class="input-field col s6") 
-          strong Year Range:
-          select(name="year" class="browser-default  grey lighten-3") 
-            option(selected="" value="") From Year  
-            option(value="2016") 2016 
-            option(value="2015") 2015 
-            option(value="2014") 2014 
-            option(value="2013") 2013 
-            option(value="2012") 2012 
-            option(value="2011") 2011 
-            option(value="2010") 2010 
-            option(value="2009") 2009 
-            option(value="2008") 2008 
-            option(value="2007") 2007 
-            option(value="2006") 2006 
-            option(value="2005") 2005 
-            option(value="2004") 2004 
-            option(value="2003") 2003 
-            option(value="2002") 2002 
-            option(value="2001") 2001 
-            option(value="2000") 2000
-     
-          select(class="browser-default  grey lighten-3" name="year1") 
-            option(selected="" value="") To Year
-            option(value="2016") 2016 
-            option(value="2015") 2015 
-            option(value="2014") 2014 
-            option(value="2013") 2013 
-            option(value="2012") 2012 
-            option(value="2011") 2011 
-            option(value="2010") 2010 
-            option(value="2009") 2009 
-            option(value="2008") 2008 
-            option(value="2007") 2007 
-            option(value="2006") 2006 
-            option(value="2005") 2005 
-            option(value="2004") 2004 
-            option(value="2003") 2003 
-            option(value="2002") 2002 
-            option(value="2001") 2001 
-            option(value="2000") 2000
-      li(class="region")
-        div(class="input-field col s6" )       
-          strong Region:
-          select(name="locat" class="browser-default  grey lighten-3") 
-            option(selected="" value="") Any       
-button(type="submit" class="waves-effect waves-dark btn right") Search! 
+block content
+  h4 Search adverts
+  form(id="search" name="search" method="get" class="row")
+    div(class="col s12")
+      ul(class="searchBox" id="searchBox")
+        li(class="category")
+          div(class="input-field col s6" ) 
+            strong Category: 
+            select(name="cat" class="browser-default  grey lighten-3")
+              option(selected="" value="Cars and SUV's") Cars and SUV's
+              option(value="Trucks") Trucks 
+              option(value="Motorcycles") Motorcycles
+        li(class="sort")
+          div(class="input-field col s6")        
+            strong Sort By:
+            select(name="sort" class="browser-default grey lighten-3") 
+              option(selected="" value="1") Newest adverts  
+              option(value="2") Price - largest 
+              option(value="3") Price - lowest  
+              option(value="4") Year
+        li(class="maker")
+          div(class="input-field col s6" )
+            strong Manufacturer:
+            select(id="manufacturer" class="browser-default grey lighten-3")
+              option(value="" selected="selected") All Makes
+              option(label="Acura" value="acura") Acura
+              option(label="Alfa Romeo" value="alfa romeo") Alfa Romeo
+              option(label="Aston Martin" value="aston martin") Aston Martin
+              option(label="Audi" value="audi") Audi
+              option(label="Bentley" value="bentley") Bentley
+              option(label="BMW" value="bmw") BMW
+              option(label="Buick" value="buick") Buick
+              option(label="Cadillac" value="cadillac") Cadillac
+              option(label="Chevrolet" value="chevrolet") Chevrolet
+              option(label="Chrysler" value="chrysler") Chrysler
+              option(label="Dodge" value="dodge") Dodge
+              option(label="Ferrari" value="ferrari") Ferrari
+              option(label="FIAT" value="fiat") FIAT
+              option(label="Ford" value="ford") Ford
+              option(label="Genesis" value="genesis") Genesis
+              option(label="GMC" value="gmc") GMC
+              option(label="Honda" value="honda") Honda
+              option(label="Hyundai" value="hyundai") Hyundai
+              option(label="Infiniti" value="infiniti") Infiniti
+              option(label="Jaguar" value="jaguar") Jaguar
+              option(label="Jeep" value="jeep") Jeep
+              option(label="Kia" value="kia") Kia
+              option(label="Lamborghini" value="lamborghini") Lamborghini
+              option(label="Land Rover" value="land rover") Land Rover
+              option(label="Lexus" value="lexus") Lexus
+              option(label="Lincoln" value="lincoln") Lincoln
+              option(label="Lotus" value="lotus") Lotus
+              option(label="Maserati" value="maserati") Maserati
+              option(label="Mazda" value="mazda") Mazda
+              option(label="McLaren" value="mclaren") McLaren
+              option(label="Mercedes-Benz" value="mercedes benz") Mercedes-Benz
+              option(label="MINI" value="mini") MINI
+              option(label="Nissan" value="nissan") Nissan
+              option(label="Porsche" value="porshe") Porsche
+              option(label="Rolls-Royce" value="rolls-royce") Rolls-Royce
+              option(label="smart" value="smart") Smart
+              option(label="Subaru" value="subaru") Subaru
+              option(label="Tesla" value="tesla") Tesla
+              option(label="Toyota" value="toyota") Toyota
+              option(label="Volkswagen" value="volkswagen") Volkswagen
+              option(label="Volvo" value="volvo") Volvo         
+        li(class="price")
+          div(class="input-field col s6" )
+            strong Price: 
+            select(id="minPrice" class="browser-default grey lighten-3")
+              option(selected="") Min Price        
+              option(value="45000") &euro;45000  
+              option(value="50000") &euro;50000  
+              option(value="55000") &euro;55000   
+              option(value="70000") &euro;70000  
+              option(value="80000") &euro;80000  
+              option(value="100000") &euro;100000 
+              option(value="120000") &euro;120000  
+              option(value="140000") &euro;140000  
+              option(value="160000") &euro;160000  
+              option(value="180000") &euro;180000             
+            select(id="maxPrice" class="browser-default  grey lighten-3")
+              option(selected="") Max Price
+              option(value="3000000") &euro;3000000
+              option(value="2000000") &euro;2000000 
+              option(value="1500000") &euro;1500000 
+              option(value="1000000") &euro;1000000 
+              option(value="800000") &euro;800000 
+              option(value="700000") &euro;700000 
+              option(value="600000") &euro;600000 
+              option(value="500000") &euro;500000
+        li(id="fuel")
+          div(class="input-field col s6" )  
+            strong Fuel:
+            select(name="fuel-type" class="browser-default grey lighten-3") 
+              option(selected="" value="") All 
+              option(value="Gasoline") Gasoline
+              option(value="Diesel") Diesel 
+              option(value="Electric") Electric 
+              option(value="Gasoline Hybrid") Gasoline Hybrid
+        li(class="trans")
+          div(class="input-field col s6" )       
+            strong Transmission: 
+            select(name="transmission" class="browser-default  grey lighten-3")
+              option(selected="" value="") Any
+              option(value="Automatic") Automatic 
+              option(value="Automanual") Automanual 
+              option(value="Manual") Manual 
+        li(class="year-range")
+          div(class="input-field col s6") 
+            strong Year Range:
+            select(name="year" class="browser-default  grey lighten-3") 
+              option(selected="" value="") From Year  
+              option(value="2016") 2016 
+              option(value="2015") 2015 
+              option(value="2014") 2014 
+              option(value="2013") 2013 
+              option(value="2012") 2012 
+              option(value="2011") 2011 
+              option(value="2010") 2010 
+              option(value="2009") 2009 
+              option(value="2008") 2008 
+              option(value="2007") 2007 
+              option(value="2006") 2006 
+              option(value="2005") 2005 
+              option(value="2004") 2004 
+              option(value="2003") 2003 
+              option(value="2002") 2002 
+              option(value="2001") 2001 
+              option(value="2000") 2000
+      
+            select(class="browser-default  grey lighten-3" name="year1") 
+              option(selected="" value="") To Year
+              option(value="2016") 2016 
+              option(value="2015") 2015 
+              option(value="2014") 2014 
+              option(value="2013") 2013 
+              option(value="2012") 2012 
+              option(value="2011") 2011 
+              option(value="2010") 2010 
+              option(value="2009") 2009 
+              option(value="2008") 2008 
+              option(value="2007") 2007 
+              option(value="2006") 2006 
+              option(value="2005") 2005 
+              option(value="2004") 2004 
+              option(value="2003") 2003 
+              option(value="2002") 2002 
+              option(value="2001") 2001 
+              option(value="2000") 2000
+        li(class="region")
+          div(class="input-field col s6" )       
+            strong Region:
+            select(name="locat" class="browser-default  grey lighten-3") 
+              option(selected="" value="") Any       
+  button(type="submit" class="waves-effect waves-dark btn right") Search! 
