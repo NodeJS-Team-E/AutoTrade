@@ -34,6 +34,18 @@ module.exports = function(Advert) {
         });
     }
 
+    function getAdvertById(id) {
+        return new Promise((resolve, reject) => {
+            Advert.findOne({ _id: id }, (err, advert) => {
+                if (err) {
+                    return reject(err);
+                }
+
+                return resolve(advert);
+            });
+        });
+    }
+
     function all() {
         return new Promise((resolve, reject) => {
             Advert.find((err, users) => {
@@ -49,6 +61,8 @@ module.exports = function(Advert) {
     return {
         create,
         findByTitle,
-        all
+        all,
+        getAdvertById
+
     };
 };

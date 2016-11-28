@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+html(lang="en")
+head
+    meta(charset="UTF-8")
+    link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css")
+    title Borat's AutoTrade
+body
+
+ nav.teal.darken-2
+    #container
+        div.nav-wrapper
+            a(href="#").brand-logo Borat Logo
+            ul.right.hide-on-med-and-down
+                li
+                  a(href="/home") Home
+                li
+                  a(href="/adverts") Adverts
+                li
+                  a(href="#") Register
+                li
+                  a(href="#") About
+block nav
+    div.collection 
+        each advert in result
+            a.collection-item(href="/adverts/"+advert._id)= advert.title
+        
