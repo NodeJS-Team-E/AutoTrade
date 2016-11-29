@@ -6,34 +6,38 @@ const mongoose = require('mongoose');
 const requiredMessage = '{PATH} is required';
 
 let vehicleSchema = mongoose.Schema({
+    price: {
+        type: Number,
+        required: requiredMessage
+    },
     category: {
         type: mongoose.Schema.Types.Mixed,
         required: requiredMessage
     },
-    manufactureDate: {
-        type: Number,
-        require: requiredMessage
+    manufacturer: {
+        type: String,
+        required: requiredMessage
     },
     fuelType: {
         type: String,
-        require: requiredMessage
+        required: requiredMessage
     },
-    shiftGear: {
+    transmission: {
         type: String,
         enum: ['automatic', 'manual', "automanual"],
-        require: requiredMessage
+        required: requiredMessage
     },
-    mileage: {
+    manufactureDate: {
         type: Number,
-        require: requiredMessage
-    },
-    price: {
-        type: Number,
-        require: requiredMessage
+        required: requiredMessage
     },
     color: {
         type: String,
-        require: requiredMessage
+        required: requiredMessage
+    },
+    mileage: {
+        type: Number,
+        required: requiredMessage
     },
     vehiclePicture: [{
         type: String,

@@ -6,17 +6,19 @@ const data = require("../data")(config, models);
 
 module.exports = {
     getCreateForm(req, res) {
-        res.render("create-advert");
+        res.render("test");
     },
     create(req, res) {
+        console.log(req.body);
         let vehicle = {
-            category: req.body.category,
-            manufactureDate: req.body.year,
-            fuelType: req.body.fuelType,
-            shiftGear: req.body.transmission,
-            mileage: req.body.mileage,
             price: req.body.price,
+            category: req.body.category,
+            manufacturer: req.body.manufacturer,
+            fuelType: req.body.fuelType,
+            transmission: req.body.transmission,
+            manufactureDate: req.body.year,
             color: req.body.color,
+            mileage: req.body.mileage,
             vehiclePicture: req.body.picture
         }
         data.vehicleData.create(vehicle)

@@ -2,17 +2,18 @@
 'use strict';
 
 module.exports = function(Vehicle) {
-    function create(category, manufactureDate, fuelType, shiftGear, mileage, price, color, ...vehiclePicture) {
+    function create(car) {
 
         const vehicle = new Vehicle({
-            category: category,
-            manufactureDate: manufactureDate,
-            fuelType: fuelType,
-            shiftGear: shiftGear,
-            mileage: mileage,
-            price: price,
-            color: color,
-            vehiclePicture: vehiclePicture
+            price: car.price,
+            category: car.category,
+            manufacturer: car.manufacturer,
+            fuelType: car.fuelType,
+            transmission: car.transmission,
+            manufactureDate: car.manufactureDate,
+            color: car.color,
+            mileage: car.mileage,
+            vehiclePicture: car.vehiclePicture
         });
 
         return new Promise((resolve, reject) => {
