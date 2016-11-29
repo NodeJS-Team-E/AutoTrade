@@ -2,35 +2,21 @@
 'use strict';
 
 module.exports = function(Vehicle) {
-    function create(vehicleType, manufactureDate, engineType, shiftGear, mileage, price, location, category, color, ...vehiclePicture) {
+    function create(category, manufactureDate, fuelType, shiftGear, mileage, price, color, ...vehiclePicture) {
 
         const vehicle = new Vehicle({
-            vehicleType: vehicleType,
+            category: category,
             manufactureDate: manufactureDate,
-            engineType: engineType,
+            fuelType: fuelType,
             shiftGear: shiftGear,
             mileage: mileage,
             price: price,
-            location: location,
-            category: category,
             color: color,
             vehiclePicture: vehiclePicture
         });
 
         return new Promise((resolve, reject) => {
             vehicle.save((err) => {
-                if (err) {
-                    return reject(err);
-                }
-
-                return resolve(vehicle);
-            });
-        });
-    }
-
-    function findByLocation(location) {
-        return new Promise((resolve, reject) => {
-            Vehicle.find({ location }, (err, vehicle) => {
                 if (err) {
                     return reject(err);
                 }
@@ -79,7 +65,6 @@ module.exports = function(Vehicle) {
     return {
         create,
         findByCategory,
-        findByLocation,
         findByVehicleType,
         all
     };

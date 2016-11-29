@@ -6,28 +6,6 @@ const mongoose = require('mongoose');
 const requiredMessage = '{PATH} is required';
 
 let vehicleSchema = mongoose.Schema({
-    vehicleType: {
-        type: String,
-        enum: ['motorcycle', 'car', 'truck', 'bus'],
-        require: requiredMessage
-    },
-    manufactureDate: {
-        type: Date,
-        require: requiredMessage
-    },
-    engineType: {
-        type: String,
-        require: requiredMessage
-    },
-    shiftGear: {
-        type: String,
-        enum: ['automatic', 'manual'],
-        require: requiredMessage
-    },
-    mileage: {
-        type: Number,
-        require: requiredMessage
-    },
     price: {
         type: Number,
         require: requiredMessage
@@ -36,13 +14,30 @@ let vehicleSchema = mongoose.Schema({
         type: String,
         require: requiredMessage
     },
+    manufactureDate: {
+        type: Number,
+        require: requiredMessage
+    },
+    fuelType: {
+        type: String,
+        require: requiredMessage
+    },
+    shiftGear: {
+        type: String,
+        enum: ['automatic', 'manual', "automanual"],
+        require: requiredMessage
+    },
+    mileage: {
+        type: Number,
+        require: requiredMessage
+    },
     color: {
         type: String,
         require: requiredMessage
     },
     vehiclePicture: [{
         type: String,
-        require: requiredMessage
+        default: "https://thenypost.files.wordpress.com/2014/11/borat.jpg?quality=90&strip=all&w=1200"
     }]
 });
 

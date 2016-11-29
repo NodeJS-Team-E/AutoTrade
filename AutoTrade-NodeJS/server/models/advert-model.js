@@ -14,14 +14,21 @@ let advertSchema = mongoose.Schema({
     },
     vehicle: {
         type: Schema.Types.ObjectId,
-        ref: "Vehicle",
+        ref: "Vehicle"
+    },
+    location: {
+        type: String,
+        required: requiredMessage
     },
     postedBy: {
         type: Schema.Types.ObjectId,
-        ref: 'User'
+        ref: "User"
     },
     comments: [{
-        username: String,
+        username: {
+            type: Schema.Types.ObjectId,
+            ref: "User"
+        },
         content: String
     }]
 });

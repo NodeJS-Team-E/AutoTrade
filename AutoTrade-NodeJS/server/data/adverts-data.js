@@ -1,12 +1,24 @@
 /* globals Promise */
 'use strict';
-
+const Vehicle = require("../models/vehicle-model");
 module.exports = function(Advert) {
     function create(options) {
+        const vehicle = new Vehicle({
+            price: options.price,
+            category: options.category,
+            manufactureDate: options.year,
+            fuelType: options.fuelType,
+            shiftGear: options.transmission,
+            mileage: options.mileage,
+            color: options.color,
+            vehiclePicture: options.picture
+        });
+
         const advert = new Advert({
             title: options.title,
             description: options.description,
-            vehicle: options.vehicle,
+            vehicle: vehicle,
+            location: options.location,
             postedBy: options.postedBy,
             comments: options.comments,
         });
@@ -16,8 +28,14 @@ module.exports = function(Advert) {
                 if (err) {
                     return reject(err);
                 }
-
-                return resolve(advert);
+                Advert.findOne({ _id: advert._id })
+                    .populate("vehicle")
+                    .exec((err, advert) => {
+                        if (err) {
+                            console.log(`Population error: {err}`);
+                        }
+                        return resolve(advert);
+                    })
             });
         });
     }
@@ -46,6 +64,18 @@ module.exports = function(Advert) {
         });
     }
 
+    function findByLocation(location) {
+        return new Promise((resolve, reject) => {
+            Advert.find({ location }, (err, vehicle) => {
+                if (err) {
+                    return reject(err);
+                }
+
+                return resolve(vehicle);
+            });
+        });
+    }
+
     function all() {
         return new Promise((resolve, reject) => {
             Advert.find((err, users) => {
@@ -61,6 +91,7 @@ module.exports = function(Advert) {
     return {
         create,
         findByTitle,
+        findByLocation,
         all,
         getAdvertById
 
