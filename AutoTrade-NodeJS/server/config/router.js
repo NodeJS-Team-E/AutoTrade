@@ -12,7 +12,10 @@ module.exports = app => {
         .get("/adverts", advertsController.getAll)
         .get("/adverts/:id", advertsController.getById)
         .get("/create-advert", advertsController.getCreateForm)
-        .post("/create-advert", advertsController.create);
+        .post("/create-advert", advertsController.create)
+        .get("/register", (req, res) => {
+            res.render("register");
+        });
 
 
     app.use(router);
