@@ -6,13 +6,9 @@ const mongoose = require('mongoose');
 const requiredMessage = '{PATH} is required';
 
 let vehicleSchema = mongoose.Schema({
-    price: {
-        type: Number,
-        require: requiredMessage
-    },
     category: {
-        type: String,
-        require: requiredMessage
+        type: mongoose.Schema.Types.Mixed,
+        required: requiredMessage
     },
     manufactureDate: {
         type: Number,
@@ -28,6 +24,10 @@ let vehicleSchema = mongoose.Schema({
         require: requiredMessage
     },
     mileage: {
+        type: Number,
+        require: requiredMessage
+    },
+    price: {
         type: Number,
         require: requiredMessage
     },

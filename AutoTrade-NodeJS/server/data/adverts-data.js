@@ -3,21 +3,21 @@
 const Vehicle = require("../models/vehicle-model");
 module.exports = function(Advert) {
     function create(options) {
-        const vehicle = new Vehicle({
-            price: options.price,
-            category: options.category,
-            manufactureDate: options.year,
-            fuelType: options.fuelType,
-            shiftGear: options.transmission,
-            mileage: options.mileage,
-            color: options.color,
-            vehiclePicture: options.picture
-        });
+        // const vehicle = new Vehicle({
+        //     price: options.price,
+        //     category: options.category,
+        //     manufactureDate: options.year,
+        //     fuelType: options.fuelType,
+        //     shiftGear: options.transmission,
+        //     mileage: options.mileage,
+        //     color: options.color,
+        //     vehiclePicture: options.picture
+        // });
 
         const advert = new Advert({
             title: options.title,
             description: options.description,
-            vehicle: vehicle,
+            vehicle: options.vehicle,
             location: options.location,
             postedBy: options.postedBy,
             comments: options.comments,
