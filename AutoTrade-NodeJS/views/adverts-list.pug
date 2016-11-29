@@ -1,0 +1,10 @@
+extends _layout
+block content
+    div.collection 
+        each advert in result
+            a.collection-item(href="/adverts/"+advert._id)= advert.title
+            li
+                p= advert.description
+                p= advert.vehicle
+                p= advert.price
+        
