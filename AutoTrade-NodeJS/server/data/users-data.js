@@ -28,6 +28,18 @@ module.exports = function(User) {
         });
     }
 
+    function getUserById(id) {
+        return new Promise((resolve, reject) => {
+            User.findOne({ _id: id }, (err, user) => {
+                if (err) {
+                    return reject(err);
+                }
+
+                return resolve(user);
+            });
+        });
+    }
+
     function findByUsername(username) {
         return new Promise((resolve, reject) => {
             User.find({ username }, (err, user) => {
@@ -52,9 +64,61 @@ module.exports = function(User) {
         });
     }
 
+    function updateUserImage(user, newImageUrl) {
+        return new Promise((resolve, reject) => {
+            User.update({
+                _id: user._id
+            }, {
+                $set: {
+                    pictureUrl: newImageUrl
+                }
+            }, (err, updatedUser) => {
+                if (err) {
+                    return reject(err);
+                }
+
+                return resolve(updatedUser);
+            });
+        });
+    }
+
+    function updateUserPhoneNumber(user, newPhoneNumber) {
+        return new Promise((resolve, reject) => {
+            User.update({
+                _id: user._id
+            }, {
+                $set: {
+                    phoneNumber: newPhoneNumber
+                }
+            }, (err, updatedUser) => {
+                if (err) {
+                    return reject(err);
+                }
+
+                return resolve(updatedUser);
+            });
+        });
+    }
+
+    function updateUser(user) {
+        return new Promise((resolve, reject) => {
+            user.save((err) => {
+                if (err) {
+                    return reject(err);
+                }
+
+                return resolve(user);
+            });
+        });
+    }
+
     return {
         create,
+        getUserById,
         findByUsername,
-        all
+        all,
+        updateUserImage,
+        updateUserPhoneNumber,
+        updateUser
     };
 };
