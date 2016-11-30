@@ -49,7 +49,7 @@ module.exports = function(Advert) {
                 }
 
                 return resolve(advert);
-            });
+            }).populate('vehicle');
         });
     }
 
@@ -67,13 +67,13 @@ module.exports = function(Advert) {
 
     function all() {
         return new Promise((resolve, reject) => {
-            Advert.find((err, users) => {
+            Advert.find((err, adverts) => {
                 if (err) {
                     return reject(err);
                 }
 
-                return resolve(users);
-            });
+                return resolve(adverts);
+            }).populate('vehicle');
         });
     }
 

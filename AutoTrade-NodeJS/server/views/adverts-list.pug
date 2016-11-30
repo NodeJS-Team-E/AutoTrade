@@ -13,7 +13,7 @@ block content
                         img(height='150' src='https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRyLO1X2EIRJwdiEMR_6CGkN-kEHhfoUoXrHDZEQh3Vo0-f60iJFg')
                     div.card-stacked
                         div.card-content
-                            p= advert.description
+                            p= advert.vehicle.fuelType
                             
                         div.card-action
                             a(href='/adverts/'+advert._id)= advert.title
