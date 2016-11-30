@@ -1,24 +1,31 @@
-<!DOCTYPE html>
-html(lang="en")
-head
-    meta(charset="UTF-8")
-    link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css")
-    title Borat's AutoTrade
-body
-block nav
- nav.teal.darken-2
-    #container
-        div.nav-wrapper
-            a(href="#").brand-logo Borat Logo
-            ul.right.hide-on-med-and-down
-                li
-                  a(href="/home") Home
-                li
-                  a(href="/adverts") Adverts
-                li
-                  a(href="#") Register
-                li
-                  a(href="#") About
+extends _layout
+block content
+    a(href="/adverts") Go back to all adverts
 
-h1= result.title 
-h2= result._id
+    div.col.s12.m7
+        h4.header= result.title
+        div.card.horizontal
+            div.card-image
+                img.responsive-img(src='' + result.vehicle.vehiclePicture[0] height="100" width="100")
+            div.card-stacked
+                div.card-content  
+                    p Price: 
+                        bold= result.vehicle.price + 'лв'
+                    p City:
+                        bold= result.location
+                    p Manufacturer: 
+                        bold= result.vehicle.manufacturer
+                    p Color: 
+                        bold= result.vehicle.color
+                    p Mileage:
+                        bold= result.vehicle.mileage
+                    p ManufactureDate:
+                        bold= result.vehicle.manufactureDate
+                    p Transmission:
+                        bold= result.vehicle.transmission
+                    p FuelType:
+                        bold= result.vehicle.fuelType
+                    p Description:
+                        bold= result.description
+                    
+                
