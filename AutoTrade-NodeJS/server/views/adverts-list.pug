@@ -6,13 +6,14 @@ block content
             //img.responsive-img(src="http://buyersguide.caranddriver.com/media/assets/submodel/7731.jpg")
 
             div.col.s12.m7
-                h2.header= advert.title
+                h4.header= advert.title
                 div.card.horizontal
                     div.card-image
-                        img(height='150' src='http://buyersguide.caranddriver.com/media/assets/submodel/7731.jpg')
+                        //shegichka *_*
+                        img(height='150' src='https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRyLO1X2EIRJwdiEMR_6CGkN-kEHhfoUoXrHDZEQh3Vo0-f60iJFg')
                     div.card-stacked
                         div.card-content
-                            p= advert.vehicle
+                            p= advert.description
                             
                         div.card-action
                             a(href='/adverts/'+advert._id)= advert.title
