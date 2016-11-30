@@ -51,6 +51,18 @@ module.exports = function(Vehicle) {
         });
     }
 
+    function findById(id) {
+        return new Promise((resolve, reject) => {
+            Vehicle.findOne({ _id: id }, (err, vehicle) => {
+                if (err) {
+                    return reject(err);
+                }
+                return resolve(vehicle);
+            });
+        });
+
+    }
+
     function all() {
         return new Promise((resolve, reject) => {
             Vehicle.find((err, vehicles) => {
@@ -67,6 +79,7 @@ module.exports = function(Vehicle) {
         create,
         findByCategory,
         findByVehicleType,
-        all
+        all,
+        findById
     };
 };

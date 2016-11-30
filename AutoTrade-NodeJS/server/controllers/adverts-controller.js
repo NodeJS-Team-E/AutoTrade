@@ -60,6 +60,7 @@ module.exports = {
     getAll(req, res) {
         data.advertData.all()
             .then(adverts => {
+                //console.log(adverts);
                 res.render("adverts-list", {
                     result: adverts
                 });

@@ -24,6 +24,7 @@ module.exports = function(config, models) {
         userData = require('./users-data')(models.User),
         advertData = require('./adverts-data')(models.Advert),
         vehicleData = require('./vehicles-data')(models.Vehicle);
+
     return {
         messageData,
         userData,
