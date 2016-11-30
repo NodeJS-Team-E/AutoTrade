@@ -77,12 +77,57 @@ module.exports = function(Advert) {
         });
     }
 
+    function getAllAdvertsWithPagination(pageNumber = 0, pageSize = 5) {
+        const getPage = new Promise((resolve, reject) => {
+            Advert.find()
+                .skip(pageNumber * pageSize)
+                .limit(pageSize)
+                .exec((err, adverts) => {
+                    if (err) {
+                        return reject(err);
+                    }
+
+                    return resolve(adverts);
+                });
+        });
+
+        const getCount = new Promise((resolve, reject) => {
+            Advert.count((err, size) => {
+                if (err) {
+                    return reject(err);
+                }
+
+                const pageCount = Math.ceil(size / pageSize);
+                return resolve(pageCount);
+            });
+        });
+
+        return Promise.all([
+            getPage,
+            getCount
+        ]);
+    }
+
+    function updateAdvert(advert) {
+        return new Promise((resolve, reject) => {
+            advert.save((err) => {
+                if (err) {
+                    return reject(err);
+                }
+
+                return resolve(advert);
+            });
+        });
+    }
+
     return {
         create,
         findByTitle,
         findByLocation,
         all,
-        getAdvertById
+        getAdvertById,
+        getAllAdvertsWithPagination,
+        updateAdvert
 
     };
 };

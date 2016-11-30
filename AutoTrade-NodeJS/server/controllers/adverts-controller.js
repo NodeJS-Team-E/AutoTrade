@@ -6,10 +6,9 @@ const data = require("../data")(config, models);
 
 module.exports = {
     getCreateForm(req, res) {
-        res.render("test");
+        res.render("create-advert");
     },
     create(req, res) {
-        console.log(req.body);
         let vehicle = {
             price: req.body.price,
             category: req.body.category,
