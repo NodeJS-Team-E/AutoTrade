@@ -3,13 +3,9 @@
 let passport = require("passport");
 let notifier = require("../utilities/notifier");
 
-
-
 module.exports = function(data) {
     return {
         register(req, res) {
-            //console.log(req.body);
-            //console.log(data);
             let user = {
                 username: req.body.username,
                 email: req.body.email,
@@ -21,17 +17,14 @@ module.exports = function(data) {
                 messages: [],
                 adverts: []
             };
-            // console.log('----------------');
-            // console.log(user.hashPass);
-            data.create(user)
+            data.userData.create(user)
                 .then(dbUser => {
                     res.status(201)
                         .redirect('/login');
                 })
                 .catch(err => res.status(500).json(err));
-        }
+        },
 
-        ,
         login(req, res, next) {
             const auth = passport.authenticate("local", (error, user) => {
                 if (error) {
@@ -41,10 +34,6 @@ module.exports = function(data) {
 
                 if (!user) {
                     notifier.error('Invalid name or password!')
-                        /*res.json({
-                            success: false,
-                            message: 'Invalid name or password!'
-                        });*/
                     res.redirect("/login");
                 }
 
@@ -65,6 +54,6 @@ module.exports = function(data) {
             req.logout();
             notifier.success('Logged out!');
             res.status(200).redirect('/home');
-        },
+        }
     }
 };

@@ -2,28 +2,18 @@ extends _layout
 block content
     div.collection 
         each advert in result
-            //a.collection-item(href="/adverts/"+advert._id)= advert.title
-            //img.responsive-img(src="http://buyersguide.caranddriver.com/media/assets/submodel/7731.jpg")
             div.row
                 div.col.s12.m7
                     h4.header= advert.title
                     div.card.horizontal
                         div.card-image
-                            img.responsive-img(src='' + advert.vehicle.vehiclePicture[0] height="100" width="100")
+                            img.responsive-img(src=advert.vehicle.vehiclePicture[0] height="100" width="100")
                         div.card-stacked
                             div.card-content
-                                //p= advert.vehicle.
                                 p= advert.vehicle.manufacturer
-                                p= advert.vehicle.price + 'лв'
+                                p= advert.vehicle.price + 'lv'
                                 p= advert.location
                                 
                             div.card-action
                                 a(href='/adverts/'+advert._id) Details
-
-            //- li
-            //-     p= advert.description
-            //- li
-            //-     p= advert.vehicle
-            //- li
-            //-     p= advert.price
         

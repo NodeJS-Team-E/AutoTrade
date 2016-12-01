@@ -21,7 +21,6 @@ module.exports = app => {
 
     require("./local-strategy")(passport, data.userData);
 
-
     app.use(passport.initialize());
     app.use(passport.session());
 };

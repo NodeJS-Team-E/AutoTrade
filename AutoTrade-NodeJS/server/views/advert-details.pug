@@ -8,24 +8,29 @@ block content
             div.card-image
                 img.responsive-img(src='' + result.vehicle.vehiclePicture[0] height="100" width="100")
             div.card-stacked
-                div.card-content  
-                    p Price: 
-                        bold= result.vehicle.price + 'лв'
-                    p City:
-                        bold= result.location
-                    p Manufacturer: 
-                        bold= result.vehicle.manufacturer
-                    p Color: 
-                        bold= result.vehicle.color
-                    p Mileage:
-                        bold= result.vehicle.mileage
-                    p ManufactureDate:
-                        bold= result.vehicle.manufactureDate
-                    p Transmission:
-                        bold= result.vehicle.transmission
-                    p FuelType:
-                        bold= result.vehicle.fuelType
-                    p Description:
-                        bold= result.description
+                div.card-content
+                    div.row
+                        div.col.s6  
+                            p Price: 
+                                p.gray-text.gray.darken-3= result.vehicle.price + 'lv'
+                            p City:
+                                bold= result.location
+                            p Manufacturer: 
+                                bold= result.vehicle.manufacturer
+                            p Color: 
+                                bold= result.vehicle.color
+                        div.col.s6            
+                            p Mileage:
+                                bold= result.vehicle.mileage
+                            p ManufactureDate:
+                                bold= result.vehicle.manufactureDate
+                            p Transmission:
+                                bold= result.vehicle.transmission
+                            p FuelType:
+                                bold= result.vehicle.fuelType
+                    div.row
+                        div.col.s12            
+                            p Description:
+                                bold= result.description
                     
                 

@@ -1,21 +1,12 @@
 'use strict';
-let homeController = require("../controllers/home-controller");
-let advertsController = require("../controllers/adverts-controller");
-let userController = require("../controllers/users-controller");
-
-let createAuthController = require("../controllers/authentication-controller");
-//const data = require('../models/user-model');
-
-//TODO these requires should not be here
-const myUser = require('../models/user-model');
-const createUserData = require('../data/users-data');
-const userData = createUserData(myUser);
-const authController = createAuthController(userData);
-//-------------------------------------------------
-
-let router = require("express").Router();
-
-
+const config = require("./constants"),
+    models = require("../models")(),
+    data = require("../data/index")(config, models),
+    advertsController = require("../controllers/adverts-controller")(data),
+    authController = require("../controllers/authentication-controller")(data),
+    userController = require("../controllers/users-controller"),
+    homeController = require("../controllers/home-controller"),
+    router = require("express").Router();
 
 module.exports = app => {
     router.get("/", (req, res) => {
@@ -23,6 +14,7 @@ module.exports = app => {
     });
     router
         .get("/home", homeController.getHome)
+        .get("/search", homeController.getAdvancedSearch)
         .get("/adverts", advertsController.getAll)
         .get("/adverts/:id", advertsController.getById)
         .get("/create-advert", advertsController.getCreateForm)
