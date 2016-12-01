@@ -3,10 +3,13 @@
 let passport = require("passport");
 let notifier = require("../utilities/notifier");
 
+
+
 module.exports = function(data) {
     return {
         register(req, res) {
-            console.log(req);
+            //console.log(req.body);
+            //console.log(data);
             let user = {
                 username: req.body.username,
                 email: req.body.email,
@@ -18,6 +21,8 @@ module.exports = function(data) {
                 messages: [],
                 adverts: []
             };
+            // console.log('----------------');
+            // console.log(user.hashPass);
             data.create(user)
                 .then(dbUser => {
                     res.status(201)

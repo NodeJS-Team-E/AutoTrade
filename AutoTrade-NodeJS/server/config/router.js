@@ -4,10 +4,18 @@ let advertsController = require("../controllers/adverts-controller");
 let userController = require("../controllers/users-controller");
 
 let createAuthController = require("../controllers/authentication-controller");
-const data = require('../models/user-model');
+//const data = require('../models/user-model');
+
+//TODO these requires should not be here
+const myUser = require('../models/user-model');
+const createUserData = require('../data/users-data');
+const userData = createUserData(myUser);
+const authController = createAuthController(userData);
+//-------------------------------------------------
+
 let router = require("express").Router();
 
-const authController = createAuthController(data);
+
 
 module.exports = app => {
     router.get("/", (req, res) => {

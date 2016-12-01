@@ -25,6 +25,7 @@ module.exports = function(User) {
                     return reject(err);
                 }
 
+
                 return resolve(user);
             });
         });
