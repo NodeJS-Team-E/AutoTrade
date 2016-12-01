@@ -4,15 +4,17 @@ const encryption = require('../utilities/encryption');
 
 module.exports = function(User) {
     function create(options) {
+        const salt = encryption.generateSalt(),
+            hashPass = encryption.generateHashedPassword(salt, options.password);
 
         const user = new User({
             username: options.username,
             email: options.email,
             pictureUrl: options.pictureUrl,
             phoneNumber: options.phoneNumber,
-            salt: encryption.generateSalt(),
+            salt: salt,
             password: options.password,
-            hashPass: encryption.generateHashedPassword(this.salt, this.password),
+            hashPass: hashPass,
             messages: options.messages,
             adverts: options.adverts
         });

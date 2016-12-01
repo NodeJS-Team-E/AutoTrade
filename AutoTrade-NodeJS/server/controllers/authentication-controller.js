@@ -5,6 +5,28 @@ let notifier = require("../utilities/notifier");
 
 module.exports = function(data) {
     return {
+        register(req, res) {
+            console.log(req);
+            let user = {
+                username: req.body.username,
+                email: req.body.email,
+                pictureUrl: req.body.pictureUrl,
+                phoneNumber: req.body.phoneNumber,
+                salt: req.body.salt,
+                password: req.body.password,
+                hashPass: req.body.hashPass,
+                messages: [],
+                adverts: []
+            };
+            data.create(user)
+                .then(dbUser => {
+                    res.status(201)
+                        .redirect('/login');
+                })
+                .catch(err => res.status(500).json(err));
+        }
+
+        ,
         login(req, res, next) {
             const auth = passport.authenticate("local", (error, user) => {
                 if (error) {
@@ -32,7 +54,7 @@ module.exports = function(data) {
                 });
             });
 
-            auth(req, res, next);
+            // auth(req, res, next);
         }
     }
 };

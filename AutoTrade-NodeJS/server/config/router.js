@@ -22,7 +22,7 @@ module.exports = app => {
         .get("/login", userController.getLoginForm)
         .post("/login", authController.login)
         .get("/register", userController.getRegisterForm)
-        //.post("/register", authController.register)
+        .post("/register", authController.register)
         .get("/profile", userController.getProfile)
         .get("/unauthorized", userController.getUnauthorized);
 
