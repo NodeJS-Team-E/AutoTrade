@@ -2,6 +2,7 @@
 
  module.exports = {
      getLoginForm(req, res) {
+         //console.log("tuka sam");
          res.status(200).render("login");
      },
      getProfile(req, res) {
@@ -9,7 +10,9 @@
              res.status(401).render("unauthorized");
          } else {
              const user = req.user;
-             res.status(200).render("profile");
+             //  console.log('*********');
+             //  console.log(user);
+             res.status(200).render("profile", { result: user });
          }
      },
      getUnauthorized(req, res) {

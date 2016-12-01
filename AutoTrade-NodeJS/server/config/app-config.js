@@ -14,7 +14,7 @@ app.use(session({
     resave: true,
     saveUninitialized: true
 }));
-//require('./passport/')(app);
+require('./passport/')(app);
 require("./express")(app, constants);
 require("./router")(app);
 

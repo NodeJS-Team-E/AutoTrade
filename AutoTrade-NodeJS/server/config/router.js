@@ -31,6 +31,7 @@ module.exports = app => {
         .post("/login", authController.login)
         .get("/register", userController.getRegisterForm)
         .post("/register", authController.register)
+        .get("/logout", authController.logout)
         .get("/profile", userController.getProfile)
         .get("/unauthorized", userController.getUnauthorized);
 

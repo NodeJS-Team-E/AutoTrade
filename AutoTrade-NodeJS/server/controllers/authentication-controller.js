@@ -59,7 +59,12 @@ module.exports = function(data) {
                 });
             });
 
-            // auth(req, res, next);
-        }
+            auth(req, res, next);
+        },
+        logout(req, res) {
+            req.logout();
+            notifier.success('Logged out!');
+            res.status(200).redirect('/home');
+        },
     }
 };
