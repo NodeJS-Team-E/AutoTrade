@@ -1,7 +1,9 @@
-'use strict';
+"use strict";
+const passport = require("passport");
 
-const passport = require('passport'),
-    userData = require('../../data/users-data');
+const config = require("../../config/constants");
+const models = require('../../models')();
+const data = require("../../data")(config, models);
 
 passport.serializeUser((user, done) => {
     if (user) {
@@ -10,13 +12,12 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser((userId, done) => {
-    userData
-        .findById(userId)
+    data.userData.getUserById(userId)
         .then(user => done(null, user || false))
         .catch(error => done(error, false));
 });
 
-require('./local-strategy')(passport, userData);
+require("./local-strategy")(passport, data.userData);
 
 module.exports = app => {
     app.use(passport.initialize());
