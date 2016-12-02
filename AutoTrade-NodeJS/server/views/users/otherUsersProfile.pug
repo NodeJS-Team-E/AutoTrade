@@ -1,3 +1,24 @@
 extends ../_layout
 block content
-    p  Drug user
+    div(class="row")
+        div(class="col s6 m4")
+            div(class="card large")
+                div(class="card-image")
+                    img(src=otherUser.pictureUrl)
+                    span(class="card-title")=otherUser.username
+                div(class="card-content")
+                    small Email  
+                    small=otherUser.email
+                       
+                    if otherUser.adverts
+                        p Adverts by 
+                            i=otherUser.username
+                        each advert in otherUser.adverts
+                            //-div.card-image
+                                
+                            div.card.small
+                                a(href="/adverts/"+advert.id) #{advert.title}
+                                strong=advert.description
+                                
+                    
+                        
