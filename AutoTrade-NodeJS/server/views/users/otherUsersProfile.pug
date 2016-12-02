@@ -16,7 +16,7 @@ block content
                         small=otherUser.email
                     p PhoneNumber: 
                         small=otherUser.phoneNumber
-                    
+                    a(href="/send-message/"+otherUser.username) Send a message                  
                        
                     if otherUser.adverts
                         p Adverts by 
@@ -26,8 +26,3 @@ block content
                             div.card
                                 a(href="/adverts/"+advert.id) #{advert.title}
                                 strong=advert.description
-                              
-                                
-                                
-                    
-                        

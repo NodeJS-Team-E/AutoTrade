@@ -8,7 +8,6 @@ module.exports = function(Message) {
             title: options.title,
             content: options.content,
             date: options.date,
-            salt: options.salt,
             from: options.from,
             to: options.to,
             read: options.read
@@ -20,7 +19,14 @@ module.exports = function(Message) {
                     return reject(err);
                 }
 
-                return resolve(message);
+                Message.findOne({ _id: message._id })
+                    .populate("from")
+                    .exec((err, message) => {
+                        if (err) {
+                            reject(err);
+                        }
+                        resolve(message);
+                    })
             });
         });
     }
@@ -33,12 +39,25 @@ module.exports = function(Message) {
                 }
 
                 return resolve(messages);
-            });
+            }).populate("from").populate("to");
         });
+    }
+
+    function findById(id) {
+        return new Promise((resolve, reject) => {
+            Message.findOne({ _id: id }, (message, err) => {
+                if (err) {
+                    reject(err);
+                }
+
+                resolve(message);
+            }).populate("from").populate("to");
+        })
     }
 
     return {
         create,
+        findById,
         all
     };
 };

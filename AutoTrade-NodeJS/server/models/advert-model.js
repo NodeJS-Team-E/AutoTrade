@@ -3,6 +3,7 @@
 const mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 const requiredMessage = '{PATH} is required';
+const dateFormat = require("dateformat");
 
 let advertSchema = mongoose.Schema({
     title: {
@@ -19,6 +20,10 @@ let advertSchema = mongoose.Schema({
     location: {
         type: String,
         required: requiredMessage
+    },
+    postedOn: {
+        type: String,
+        default: dateFormat("mediumDate")
     },
     postedBy: {
         type: Schema.Types.ObjectId,

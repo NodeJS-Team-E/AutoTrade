@@ -8,6 +8,7 @@ module.exports = function(Advert) {
             description: options.description,
             vehicle: options.vehicle,
             location: options.location,
+            postedOn: options.postedOn,
             postedBy: options.postedBy,
             comments: options.comments,
         });
@@ -74,7 +75,7 @@ module.exports = function(Advert) {
                 }
 
                 return resolve(adverts);
-            }).populate('vehicle');
+            }).populate('vehicle').populate("postedBy");
         });
     }
 

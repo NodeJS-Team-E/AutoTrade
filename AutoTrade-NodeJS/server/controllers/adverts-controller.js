@@ -31,6 +31,7 @@ module.exports = data => {
                     description: req.body.description,
                     vehicle: vehicle,
                     location: req.body.location,
+                    postedOn: req.body.postedOn,
                     postedBy: req.user,
                     comments: req.body.comments
                         //wrap it in an array??

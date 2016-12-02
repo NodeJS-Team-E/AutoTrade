@@ -5,6 +5,7 @@ const config = require("./constants"),
     advertsController = require("../controllers/adverts-controller")(data),
     authController = require("../controllers/authentication-controller")(data),
     userController = require("../controllers/users-controller")(data),
+    messageController = require("../controllers/messages-controller")(data),
     homeController = require("../controllers/home-controller"),
     router = require("express").Router();
 
@@ -33,6 +34,9 @@ module.exports = app => {
                 user: req.user
             })
         })
+        .get("/send-message/:username", messageController.getCreateForm)
+        .post("/send-message/:username", userController.receiveMessage)
+        .get("/messages", userController.getMessages)
         .get("/unauthorized", userController.getUnauthorized);
 
     app.use(router);

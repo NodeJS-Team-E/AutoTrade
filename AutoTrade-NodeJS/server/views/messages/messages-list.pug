@@ -1,0 +1,14 @@
+extends ../_layout
+block content
+    if user.messages
+        div.collection
+            each message in messages
+                div.row
+                    div.col.s12.m7
+                        h4.header= message.title
+                        div.content= message.content
+                        p=message.from
+                        p=message.to
+                        p=message.date
+    else
+        strong You have no messages yet!               

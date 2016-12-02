@@ -38,7 +38,7 @@ module.exports = function(User) {
                 }
 
                 return resolve(user);
-            }).populate("adverts");
+            }).populate("adverts").populate("messages");
         });
     }
 
@@ -50,7 +50,7 @@ module.exports = function(User) {
                 }
 
                 return resolve(user);
-            }).populate("adverts");
+            }).populate("adverts").populate("messages");
         });
     }
 
@@ -62,7 +62,7 @@ module.exports = function(User) {
                 }
 
                 return resolve(users);
-            }).populate("adverts");
+            }).populate("adverts").populate("messages");
         });
     }
 
@@ -131,6 +131,20 @@ module.exports = function(User) {
         })
     }
 
+    function addMessage(username, message) {
+        return new Promise((resolve, reject) => {
+            User.findOne({ username: username })
+                .then(user => {
+                    console.log("IN USER ADD MESSAGE");
+                    console.log(message);
+                    user.messages.push(message);
+                    user.save();
+
+                    resolve(user);
+                }).catch(err => reject(err));
+        })
+    }
+
     return {
         create,
         getUserById,
@@ -139,6 +153,7 @@ module.exports = function(User) {
         updateUserImage,
         updateUserPhoneNumber,
         updateUser,
-        addAdvert
+        addAdvert,
+        addMessage
     };
 };
