@@ -38,15 +38,22 @@ module.exports = data => {
 
                 data.advertData.create(advert)
                     .then(advert => {
-                        console.log(advert);
                         if (advert == null) {
                             console.log("Advert not created");
                             return res.status(404)
                                 .redirect("/error");
                         }
+                        let settings = advert;
+                        data.userData.addAdvert(req.user._id, settings)
+                            .then(user => {
+                                console.log(user);
+                            });
                         res.redirect("/home");
                     }).catch(err => console.log(err));
+
+
             });
+
     }
 
     function getAll(req, res) {

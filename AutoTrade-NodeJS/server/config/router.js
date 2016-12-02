@@ -26,6 +26,8 @@ module.exports = app => {
         .get("/logout", authController.logout)
         .get("/users/:username", userController.getProfile)
         .get("/profile", userController.getProfile)
+        .get("/update-profile", userController.getUpdateForm)
+        .post("/update-profile", userController.updateProfile)
         .get("/about", (req, res) => {
             res.render("noplacetogo/about", {
                 user: req.user

@@ -8,9 +8,6 @@
               res.status(200).render("users/login");
           },
           getProfile(req, res) {
-              //console.log("()()()()");
-              //console.log(req);
-
               if (!req.isAuthenticated()) {
                   res.status(401).render("noplacetogo/unauthorized");
               } else if (Object.keys(req.params).length == 0) {
@@ -45,6 +42,30 @@
           },
           getRegisterForm(req, res) {
               res.status(200).render("users/register");
+          },
+          getUpdateForm(req, res) {
+              if (!req.isAuthenticated()) {
+                  res.status(401).render("noplacetogo/unauthorized");
+              }
+              res.render("users/update-profile", {
+                  user: req.user
+              });
+          },
+          updateProfile(req, res) {
+              if (!req.isAuthenticated()) {
+                  res.status(401).render("noplacetogo/unauthorized");
+              }
+
+              let user = req.user;
+
+              let settings = {
+                  email: req.body.newEmail,
+                  phoneNumber: req.body.newPhone,
+                  pictureUrl: req.body.newPicture,
+                  adverts: [req.body.adverts]
+              }
+
+              data.userData.updateUser(user._id, settings);
           }
-      };
+      }
   }
