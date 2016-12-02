@@ -4,7 +4,7 @@ const config = require("./constants"),
     data = require("../data/index")(config, models),
     advertsController = require("../controllers/adverts-controller")(data),
     authController = require("../controllers/authentication-controller")(data),
-    userController = require("../controllers/users-controller"),
+    userController = require("../controllers/users-controller")(data),
     homeController = require("../controllers/home-controller"),
     router = require("express").Router();
 
@@ -24,6 +24,7 @@ module.exports = app => {
         .get("/register", userController.getRegisterForm)
         .post("/register", authController.register)
         .get("/logout", authController.logout)
+        .get("/users/:username", userController.getProfile)
         .get("/profile", userController.getProfile)
         .get("/about", (req, res) => {
             res.render("noplacetogo/about", {
