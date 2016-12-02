@@ -33,6 +33,6 @@ block content
                             p Description:
                                 bold= advert.description
                             p Posted by:
-                            bold=advert.postedBy.username    
+                            a(href="/users/"+advert.postedBy.username) #{advert.postedBy.username}    
                     
                 
