@@ -10,6 +10,7 @@ module.exports = data => {
     }
 
     function create(req, res) {
+        console.log(req.user);
         //posted-by --> current user
         //adding the advert to the user profile also
         let vehicle = {
@@ -30,13 +31,14 @@ module.exports = data => {
                     description: req.body.description,
                     vehicle: vehicle,
                     location: req.body.location,
-                    postedBy: req.body.postedBy,
+                    postedBy: req.user,
                     comments: req.body.comments
                         //wrap it in an array??
                 }
 
                 data.advertData.create(advert)
                     .then(advert => {
+                        console.log(advert);
                         if (advert == null) {
                             console.log("Advert not created");
                             return res.status(404)

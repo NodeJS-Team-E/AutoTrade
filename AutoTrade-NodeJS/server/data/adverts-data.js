@@ -19,6 +19,7 @@ module.exports = function(Advert) {
                 }
                 Advert.findOne({ _id: advert._id })
                     .populate("vehicle")
+                    .populate("postedBy")
                     .exec((err, advert) => {
                         if (err) {
                             console.log(`Population error: {err}`);
@@ -49,7 +50,7 @@ module.exports = function(Advert) {
                 }
 
                 return resolve(advert);
-            }).populate('vehicle');
+            }).populate('vehicle').populate("postedBy");
         });
     }
 
