@@ -1,0 +1,22 @@
+extends _layout
+block content
+    div.collection 
+        each advert in adverts
+            div.row
+                div.col.s12.m7
+                    h4.header= advert.title
+                    div.card.horizontal.small
+                        div.card-image
+                            img.responsive-img(src=advert.vehicle.vehiclePicture[0] height="100" width="100")
+                        div.card-stacked
+                            div.card-content
+                                p Manufacturer: 
+                                bold= advert.vehicle.manufacturer
+                                p Price: 
+                                bold= advert.vehicle.price + 'lv'
+                                p Location: 
+                                bold= advert.location
+                                
+                            div.card-action
+                                a(href='/adverts/'+advert._id) Details
+        

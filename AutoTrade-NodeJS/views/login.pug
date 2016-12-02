@@ -1,0 +1,14 @@
+extends _layout
+
+block content
+    div(class="row")
+        form(name="login" class="hide-on-med-and-down center" method="post" role="search")
+            div(class="row")
+                div(class="input-field col l6 s6")
+                    i(class="material-icons small prefix") perm_identity
+                    input(type="text" class="validate" name="username" placeholder="Username")
+                div(class="input-field col l6 s6")
+                    i(class="material-icons small prefix") lock
+                    input(type="password" class="validate" name="password" placeholder="Password")
+                button(id="btn-login" type="submit" class="waves-effect waves-dark btn right") Sign In
+                    i(class="material-icons tiny right") lock_open

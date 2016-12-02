@@ -1,0 +1,32 @@
+extends _layout
+block content
+    div(class="row")
+        div(class="col s6 m4")
+            div(class="card large")
+                div(class="card-image")
+                    img(src=user.pictureUrl)
+                    span(class="card-title")=user.username
+                div(class="card-content")
+                    small Email  
+                    small=user.email
+                    p Don't like the profile picture? Change it!
+                    form(action="post" name="update-picture" id="update-picture")
+                        div(class="file-field input-field")
+                            div(class="waves-effect waves-light btn")
+                                span Update!
+                                input(type="file")
+                            div(class="file-path-wrapper")
+                                input(class="file-path validate" type="text")
+
+                       
+    //- if user.adverts!=null
+    //-     each advert in adverts
+    //-         div(class="col s6 m4")               
+    //-             div(class="content")
+    //-                 p=advert.title
+    //- else
+        p You don't have any adverts yet!
+        p Go <a href="/create-advert">make<a> one?                                
+    //- p Hello 
+    //-     i= user.username
+    //- a(href="/logout")  Logout

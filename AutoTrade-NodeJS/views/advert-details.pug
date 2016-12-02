@@ -1,0 +1,36 @@
+extends _layout
+block content
+    a(href="/adverts") Go back to all adverts
+
+    div.col.s12.m7
+        h4.header= advert.title
+        div.card.horizontal.medium
+            div.card-image
+                img.responsive-img(src=advert.vehicle.vehiclePicture[0] height="100" width="100")
+            div.card-stacked
+                div.card-content
+                    div.row
+                        div.col.s6  
+                            p Price:
+                                p.gray-text.gray.darken-3= advert.vehicle.price + 'lv'
+                            p City:
+                                bold= advert.location
+                            p Manufacturer: 
+                                bold= advert.vehicle.manufacturer
+                            p Color: 
+                                bold= advert.vehicle.color
+                        div.col.s6            
+                            p Mileage:
+                                bold= advert.vehicle.mileage
+                            p ManufactureDate:
+                                bold= advert.vehicle.manufactureDate
+                            p Transmission:
+                                bold= advert.vehicle.transmission
+                            p FuelType:
+                                bold= advert.vehicle.fuelType
+                    div.row
+                        div.col.s12            
+                            p Description:
+                                bold= advert.description
+                    
+                
