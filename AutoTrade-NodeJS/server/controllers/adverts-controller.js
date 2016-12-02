@@ -2,9 +2,9 @@
 module.exports = data => {
     function getCreateForm(req, res) {
         if (!req.isAuthenticated()) {
-            res.status(401).render("unauthorized");
+            res.status(401).render("noplacetogo/unauthorized");
         }
-        res.render("create-advert", {
+        res.render("adverts/create-advert", {
             user: req.user
         });
     }
@@ -50,7 +50,7 @@ module.exports = data => {
     function getAll(req, res) {
         data.advertData.all()
             .then(adverts => {
-                res.render("adverts-list", {
+                res.render("adverts/adverts-list", {
                     adverts: adverts,
                     user: req.user
                 });
@@ -65,7 +65,7 @@ module.exports = data => {
                         .redirect("/error");
                 }
 
-                return res.render("advert-details", {
+                return res.render("adverts/advert-details", {
                     advert: advert,
                     user: req.user
                 });

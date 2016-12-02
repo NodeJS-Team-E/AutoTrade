@@ -26,7 +26,7 @@ module.exports = app => {
         .get("/logout", authController.logout)
         .get("/profile", userController.getProfile)
         .get("/about", (req, res) => {
-            res.render("about", {
+            res.render("noplacetogo/about", {
                 user: req.user
             })
         })
