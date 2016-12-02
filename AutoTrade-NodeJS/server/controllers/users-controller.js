@@ -9,7 +9,7 @@
               res.status(401).render("unauthorized");
           } else {
               const user = req.user;
-              res.status(200).render("profile", { result: user });
+              res.status(200).render("profile", { user: user });
           }
       },
       getUnauthorized(req, res) {

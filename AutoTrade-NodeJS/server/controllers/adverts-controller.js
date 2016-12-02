@@ -1,7 +1,12 @@
 'use strict';
 module.exports = data => {
     function getCreateForm(req, res) {
-        res.render("create-advert");
+        if (!req.isAuthenticated()) {
+            res.status(401).render("unauthorized");
+        }
+        res.render("create-advert", {
+            user: req.user
+        });
     }
 
     function create(req, res) {
@@ -46,7 +51,8 @@ module.exports = data => {
         data.advertData.all()
             .then(adverts => {
                 res.render("adverts-list", {
-                    result: adverts
+                    adverts: adverts,
+                    user: req.user
                 });
             }).catch((err) => console.log(err));
     }
@@ -60,7 +66,8 @@ module.exports = data => {
                 }
 
                 return res.render("advert-details", {
-                    result: advert
+                    advert: advert,
+                    user: req.user
                 });
             });
     }

@@ -2,32 +2,39 @@ mixin site-navigation
     nav.teal.darken-2                
         div.nav-wrapper
             a(href="#").brand-logo Borat Logo
-            ul.right.hide-on-med-and-down                
-                li
-                    a(href="/home") Home
-                li
-                    a(href="/adverts") Adverts
-                li
-                    a.dropdown-button(href="#!", data-activates="dropdown1") User
-                        i.material-icons.right arrow_drop_down
-                if result        
-                
+            if user
+                ul.right.hide-on-med-and-down                
+                    li
+                        a(href="/home") Home
+                    li
+                        a(href="/adverts") Adverts
+                       
+                    li
+                        a.dropdown-button(href="/profile", data-activates="dropdown1") Profile
+                            i.material-icons.right arrow_drop_down
                     li
                         a(href="/create-advert") Create Advert
                     
                     li
-                        a(href="#/") About
+                        a(href="/about") About
                     li
                         a(href="/profile") Hello, 
-                            bold(class="lime-text")=result.username
-                            bold !
-                            
-                else
+                            bold(class="lime-text")=user.username
+                            bold(class="lime-text") !
                     li
-                        a(href="/login") Login
+                        a(href="/logout" class="lime-text") Wanna logout?
+                            
+            else
+                ul.right.hide-on-med-and-down                
+                    li
+                        a(href="/home") Home
+                    li
+                        a(href="/adverts") Adverts
+                    li
+                        a(href="/about") About    
                     li
                         a(href="/register") Register
                     li
-                        a(href="/about") About
+                        a(href="/login") Hello, stranger!
                     li
-                        a(href="/login") Hello, stranger!    
+                        a(href="/login" class="lime-text") Wanna sign in?        

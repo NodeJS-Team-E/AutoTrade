@@ -25,6 +25,11 @@ module.exports = app => {
         .post("/register", authController.register)
         .get("/logout", authController.logout)
         .get("/profile", userController.getProfile)
+        .get("/about", (req, res) => {
+            res.render("about", {
+                user: req.user
+            })
+        })
         .get("/unauthorized", userController.getUnauthorized);
 
     app.use(router);

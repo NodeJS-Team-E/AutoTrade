@@ -1,7 +1,9 @@
 'use strict';
 module.exports = {
     getHome: (req, res) => {
-        res.render("home");
+        res.render("home", {
+            user: req.user
+        });
 
     },
     getAdvancedSearch: (req, res) => {
