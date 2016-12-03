@@ -2,28 +2,11 @@
 
 module.exports = data => {
     function getBasicSearch(req, res) {
-
         res.render("search/basic-search")
     }
 
     function getAdvancedSearch(req, res) {
         res.render("search/advanced-search");
-    }
-
-    function getVehiclesBasicSearch(req) {
-        let year = req.body.year,
-            manufacturer = req.body.manufacturer,
-            price = req.body.price;
-
-        let query = {
-            'year': year,
-            'manufacturer': manufacturer,
-            'price': price
-        };
-        data.vehicleData.getFilteredVehicles(query)
-            .then(vehicles => {
-                return vehicles;
-            })
     }
 
     function basicSearchResults(req, res, next) {
