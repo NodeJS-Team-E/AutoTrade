@@ -4,11 +4,17 @@ block content
         div.collection
             each message in messages
                 div.row
-                    div.col.s12.m7
-                        h4.header= message.title
-                        div.content= message.content
-                        p=message.from
-                        p=message.to
-                        p=message.date
+                    div.card.z-depth-4
+                        div.card-content
+                            h5.header= message.title
+                            div.content= message.content
+                            strong From 
+                            a(href="users/"+message.from)=message.from
+                            br
+                            strong To  
+                            bold=message.to
+                            br
+                            strong On   
+                            bold=message.date
     else
         strong You have no messages yet!               

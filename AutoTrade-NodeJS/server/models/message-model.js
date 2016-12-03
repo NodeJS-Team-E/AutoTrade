@@ -22,8 +22,8 @@ const messagesSchema = new mongoose.Schema({
         default: dateFormat("mediumDate")
     },
     from: {
-        type: Schema.Types.ObjectId,
-        ref: 'User'
+        type: String,
+        required: requiredMessage
     },
     to: {
         type: String,

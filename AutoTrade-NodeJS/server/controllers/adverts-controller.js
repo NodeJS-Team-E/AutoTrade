@@ -10,9 +10,6 @@ module.exports = data => {
     }
 
     function create(req, res) {
-        console.log(req.user);
-        //posted-by --> current user
-        //adding the advert to the user profile also
         let vehicle = {
             price: req.body.price,
             category: req.body.category,

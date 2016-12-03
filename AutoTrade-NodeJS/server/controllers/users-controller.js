@@ -73,14 +73,15 @@ module.exports = function(data) {
             let options = {
                 title: req.body.title,
                 content: req.body.content,
-                from: req.user,
+                from: req.user.username,
                 to: req.params.username
             }
             data.messageData.create(options)
                 .then(message => {
-                    console.log("USERS-CONTROLLER RECEIVE MESSAGE");
-                    console.log(message);
+                    // console.log("USERS-CONTROLLER RECEIVE MESSAGE");
+                    // console.log(message);
                     data.userData.addMessage(req.params.username, message);
+                    res.redirect("/users/" + req.params.username);
                 })
 
         },
@@ -88,6 +89,7 @@ module.exports = function(data) {
             if (!req.isAuthenticated()) {
                 res.status(401).render("noplacetogo/unauthorized");
             }
+            console.log(req.user);
             let messages = req.user.messages;
             res.render("messages/messages-list", {
                 messages: messages,

@@ -30,10 +30,7 @@ let advertSchema = mongoose.Schema({
         ref: "User"
     },
     comments: [{
-        username: {
-            type: Schema.Types.ObjectId,
-            ref: "User"
-        },
+        username: String,
         content: String
     }]
 });

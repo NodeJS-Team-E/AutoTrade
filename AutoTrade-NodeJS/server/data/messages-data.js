@@ -19,14 +19,13 @@ module.exports = function(Message) {
                     return reject(err);
                 }
 
-                Message.findOne({ _id: message._id })
-                    .populate("from")
-                    .exec((err, message) => {
+                Message.findOne({ _id: message._id },
+                    (err, message) => {
                         if (err) {
                             reject(err);
                         }
                         resolve(message);
-                    })
+                    });
             });
         });
     }
@@ -39,7 +38,7 @@ module.exports = function(Message) {
                 }
 
                 return resolve(messages);
-            }).populate("from").populate("to");
+            });
         });
     }
 
@@ -51,7 +50,7 @@ module.exports = function(Message) {
                 }
 
                 resolve(message);
-            }).populate("from").populate("to");
+            });
         })
     }
 
