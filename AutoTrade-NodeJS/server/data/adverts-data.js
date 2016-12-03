@@ -8,6 +8,7 @@ module.exports = function(Advert) {
             description: options.description,
             vehicle: options.vehicle,
             location: options.location,
+            postedOn: options.postedOn,
             postedBy: options.postedBy,
             comments: options.comments,
         });
@@ -54,15 +55,16 @@ module.exports = function(Advert) {
         });
     }
 
-    function findByLocation(location) {
+    function findByLocation(options) {
+        let location = options.location;
         return new Promise((resolve, reject) => {
-            Advert.find({ location }, (err, vehicle) => {
+            Advert.find({ 'location': location }, (err, advert) => {
+                //console.log(advert);
                 if (err) {
                     return reject(err);
                 }
-
-                return resolve(vehicle);
-            });
+                return resolve(advert);
+            })
         });
     }
 
@@ -74,7 +76,7 @@ module.exports = function(Advert) {
                 }
 
                 return resolve(adverts);
-            }).populate('vehicle');
+            }).populate('vehicle').populate("postedBy");
         });
     }
 
@@ -121,6 +123,22 @@ module.exports = function(Advert) {
         });
     }
 
+    function getAdvertByVehicleIds(...idArr) {
+        let promise = new Promise((resolve, reject) => {
+            Advert.find({ 'vehicle': { $in: idArr } })
+                .exec((err, res) => {
+                    if (err) {
+                        return reject(err);
+                    }
+                    // console.log(res);
+                    return resolve(res);
+                });
+        })
+
+        return promise;
+    }
+
+
     return {
         create,
         findByTitle,
@@ -128,7 +146,8 @@ module.exports = function(Advert) {
         all,
         getAdvertById,
         getAllAdvertsWithPagination,
-        updateAdvert
+        updateAdvert,
+        getAdvertByVehicleIds
 
     };
 };

@@ -25,7 +25,6 @@ module.exports = function(User) {
                     return reject(err);
                 }
 
-
                 return resolve(user);
             });
         });
@@ -39,7 +38,7 @@ module.exports = function(User) {
                 }
 
                 return resolve(user);
-            });
+            }).populate("adverts").populate("messages");
         });
     }
 
@@ -51,7 +50,7 @@ module.exports = function(User) {
                 }
 
                 return resolve(user);
-            });
+            }).populate("adverts").populate("messages");
         });
     }
 
@@ -63,7 +62,7 @@ module.exports = function(User) {
                 }
 
                 return resolve(users);
-            });
+            }).populate("adverts").populate("messages");
         });
     }
 
@@ -103,16 +102,47 @@ module.exports = function(User) {
         });
     }
 
-    function updateUser(user) {
+    function updateUser(id, settings) {
         return new Promise((resolve, reject) => {
-            user.save((err) => {
-                if (err) {
-                    return reject(err);
-                }
+            User.findOne({ _id: id })
+                .then(user => {
+                    user.email = settings.email || user.email;
+                    user.phoneNumber = settings.phoneNumber || user.phoneNumber;
+                    user.pictureUrl = settings.pictureUrl || user.pictureUrl;
 
-                return resolve(user);
-            });
+                    user.save();
+
+                    resolve(user);
+
+                }).catch(err => reject(err));
         });
+    }
+
+    function addAdvert(id, settings) {
+        return new Promise((resolve, reject) => {
+            User.findOne({ _id: id })
+                .then(user => {
+                    user.adverts.push(settings);
+
+                    user.save();
+
+                    resolve(user);
+                }).catch(err => reject(err));
+        })
+    }
+
+    function addMessage(username, message) {
+        return new Promise((resolve, reject) => {
+            User.findOne({ username: username })
+                .then(user => {
+                    console.log("IN USER ADD MESSAGE");
+                    console.log(message);
+                    user.messages.push(message);
+                    user.save();
+
+                    resolve(user);
+                }).catch(err => reject(err));
+        })
     }
 
     return {
@@ -122,6 +152,8 @@ module.exports = function(User) {
         all,
         updateUserImage,
         updateUserPhoneNumber,
-        updateUser
+        updateUser,
+        addAdvert,
+        addMessage
     };
 };

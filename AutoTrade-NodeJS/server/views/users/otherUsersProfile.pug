@@ -1,2 +1,28 @@
-block content
-    p  Drug user
+extends ../_layout
+block content        
+    div.col
+        div.card-panel
+          div.row.valign-wrapper
+            div.col.s2
+              img.responsive-img(src=otherUser.pictureUrl alt="") 
+              center=otherUser.username
+            div.col.s10
+              
+              div(class="card small")
+                
+                    
+                div(class="card-content")
+                    p Email:  
+                        small=otherUser.email
+                    p PhoneNumber: 
+                        small=otherUser.phoneNumber
+                    a(href="/send-message/"+otherUser.username) Send a message                  
+                       
+                    if otherUser.adverts
+                        p Adverts by 
+                            i=otherUser.username
+                        each advert in otherUser.adverts
+                            
+                            div.card
+                                a(href="/adverts/"+advert.id) #{advert.title}
+                                strong=advert.description

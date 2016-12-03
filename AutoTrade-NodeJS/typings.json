@@ -2,9 +2,15 @@
   "globalDependencies": {
     "express": "registry:dt/express#4.0.0+20160708185218",
     "express-serve-static-core": "registry:dt/express-serve-static-core#4.0.0+20161012061536",
-    "serve-static": "registry:dt/serve-static#0.0.0+20160606155157",
+    "mongodb": "registry:dt/mongodb#2.1.0+20161110150902",
     "mongoose": "registry:dt/mongoose#4.6.8+20161122020749",
-    "mongodb":"registry:dt/mongodb#2.1.0+20161110150902",
-    "node":"registry:dt/node#6.0.0+20161110151007"
+    "node": "registry:dt/node#6.0.0+20161110151007",
+    "serve-static": "registry:dt/serve-static#0.0.0+20160606155157"
+  },
+  "globalDevDependencies": {
+    "chai": "registry:dt/chai#3.4.0+20160601211834",
+    "chai-http": "registry:dt/chai-http#0.0.0+20160317120654",
+    "mocha": "registry:dt/mocha#2.2.5+20161028141524",
+    "sinon": "registry:dt/sinon#1.16.0+20160924120326"
   }
 }

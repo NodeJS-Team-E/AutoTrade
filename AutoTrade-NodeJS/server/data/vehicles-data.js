@@ -75,11 +75,53 @@ module.exports = function(Vehicle) {
         });
     }
 
+    function getFilteredVehicles(options) {
+        let promise = new Promise((resolve, reject) => {
+            let price = options.price,
+                location = options.location,
+                manufactureDate = options.manufactureDate,
+                manufacturer = options.manufacturer,
+                andCriteria = [{}],
+                filter = {};
+
+            if (price) {
+                andCriteria.push({
+                    'price': price
+                });
+            }
+            if (manufactureDate) {
+                andCriteria.push({
+                    'manufactureDate': manufactureDate
+                });
+            }
+            if (manufacturer) {
+                andCriteria.push({
+                    'manufacturer': manufacturer
+                });
+            }
+
+            filter.$and = andCriteria;
+
+            Vehicle.find(filter)
+                .exec((err, res) => {
+                    if (err) {
+                        return reject(err);
+                    }
+
+                    return resolve(res);
+                });
+        });
+
+        return promise;
+
+    }
+
     return {
         create,
         findByCategory,
         findByVehicleType,
         all,
-        findById
+        findById,
+        getFilteredVehicles
     };
 };

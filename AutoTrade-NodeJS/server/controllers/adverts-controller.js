@@ -10,9 +10,6 @@ module.exports = function(data) {
     }
 
     function create(req, res) {
-        console.log(req.user);
-        //posted-by --> current user
-        //adding the advert to the user profile also
         let vehicle = {
             price: req.body.price,
             category: req.body.category,
@@ -31,6 +28,7 @@ module.exports = function(data) {
                     description: req.body.description,
                     vehicle: vehicle,
                     location: req.body.location,
+                    postedOn: req.body.postedOn,
                     postedBy: req.user,
                     comments: req.body.comments
                         //wrap it in an array??
@@ -38,15 +36,22 @@ module.exports = function(data) {
 
                 data.advertData.create(advert)
                     .then(advert => {
-                        console.log(advert);
                         if (advert == null) {
                             console.log("Advert not created");
                             return res.status(404)
                                 .redirect("/error");
                         }
+                        let settings = advert;
+                        data.userData.addAdvert(req.user._id, settings)
+                            .then(user => {
+                                console.log(user);
+                            });
                         res.redirect("/home");
                     }).catch(err => console.log(err));
+
+
             });
+
     }
 
     function getAll(req, res) {
