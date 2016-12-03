@@ -4,7 +4,7 @@
   "description": "course project",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": ".\\node_modules\\.bin\\mocha tests",
     "start": "nodemon app.js"
   },
   "author": "",
@@ -26,5 +26,10 @@
     "pug": "^2.0.0-beta6",
     "pug-cli": "^1.0.0-alpha6",
     "typings": "^2.0.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0",
+    "sinon": "^1.17.6"
   }
 }
