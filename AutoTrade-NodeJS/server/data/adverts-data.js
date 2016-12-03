@@ -122,6 +122,22 @@ module.exports = function(Advert) {
         });
     }
 
+    function getAdvertByVehicleIds(...idArr) {
+        let promise = new Promise((resolve, reject) => {
+            Advert.find({ 'vehicle': { $in: idArr } })
+                .exec((err, res) => {
+                    if (err) {
+                        return reject(err);
+                    }
+                    // console.log(res);
+                    return resolve(res);
+                });
+        })
+
+        return promise;
+    }
+
+
     return {
         create,
         findByTitle,
@@ -129,7 +145,8 @@ module.exports = function(Advert) {
         all,
         getAdvertById,
         getAllAdvertsWithPagination,
-        updateAdvert
+        updateAdvert,
+        getAdvertByVehicleIds
 
     };
 };
