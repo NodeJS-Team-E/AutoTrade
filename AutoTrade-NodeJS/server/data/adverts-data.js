@@ -55,15 +55,16 @@ module.exports = function(Advert) {
         });
     }
 
-    function findByLocation(location) {
+    function findByLocation(options) {
+        let location = options.location;
         return new Promise((resolve, reject) => {
-            Advert.find({ location }, (err, vehicle) => {
+            Advert.find({ 'location': location }, (err, advert) => {
+                //console.log(advert);
                 if (err) {
                     return reject(err);
                 }
-
-                return resolve(vehicle);
-            });
+                return resolve(advert);
+            })
         });
     }
 
