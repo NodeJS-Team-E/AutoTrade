@@ -15,7 +15,9 @@ module.exports = app => {
     });
     router
         .get("/home", homeController.getHome)
-        .get("/search", homeController.getAdvancedSearch)
+        .get("/search/basic", searchController.getBasicSearch)
+        .post("/search/basic", searchController.basicSearchResults)
+        .get("/search/advanced", searchController.getAdvancedSearch)
         .get("/adverts", advertsController.getAll)
         .get("/adverts/:id", advertsController.getById)
         .get("/create-advert", advertsController.getCreateForm)
