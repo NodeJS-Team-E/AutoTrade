@@ -12,4 +12,5 @@ module.exports = (app, constants) => {
     app.use(cookieParser());
 
     app.use(express.static(constants.rootPath + "/public"));
+
 }

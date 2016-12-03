@@ -45,6 +45,20 @@
           },
           getRegisterForm(req, res) {
               res.status(200).render("users/register");
+          },
+
+          getAllUsersJSON(req, res) {
+              data.userData.all()
+                  .then(users => {
+                      res.json({ users });
+                  });
+          },
+
+          getUsersByIdJSON(req, res) {
+              data.userData.getUserById(req.params.id)
+                  .then(user => {
+                      res.json({ user });
+                  });
           }
       };
   }

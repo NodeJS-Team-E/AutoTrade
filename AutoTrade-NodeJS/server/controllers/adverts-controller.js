@@ -1,5 +1,5 @@
 'use strict';
-module.exports = data => {
+module.exports = function(data) {
     function getCreateForm(req, res) {
         if (!req.isAuthenticated()) {
             res.status(401).render("noplacetogo/unauthorized");
@@ -59,6 +59,13 @@ module.exports = data => {
             }).catch((err) => console.log(err));
     }
 
+    function getAllAdvertsJSON(req, res) {
+        data.advertData.all()
+            .then(adverts => {
+                res.json({ adverts });
+            });
+    }
+
     function getById(req, res) {
         data.advertData.getAdvertById(req.params.id)
             .then(advert => {
@@ -74,11 +81,26 @@ module.exports = data => {
             });
     }
 
+    function getByIdJSON(req, res) {
+        data.advertData.getAdvertById(req.params.id)
+            .then(advert => {
+                if (advert === null) {
+                    return res.status(404)
+                        .redirect("/error");
+                }
+
+                return res.json({ advert });
+
+            });
+    }
+
     return {
         getCreateForm,
         create,
         getAll,
-        getById
+        getById,
+        getAllAdvertsJSON,
+        getByIdJSON
 
     }
 }
