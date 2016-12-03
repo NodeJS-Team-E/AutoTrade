@@ -2,6 +2,8 @@
 'use strict';
 const encryption = require('../utilities/encryption');
 
+
+
 module.exports = function(User) {
     function create(options) {
         const salt = encryption.generateSalt(),
@@ -144,6 +146,7 @@ module.exports = function(User) {
                 }).catch(err => reject(err));
         })
     }
+    
 
     return {
         create,

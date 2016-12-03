@@ -12,7 +12,7 @@ block content
                     div.row
                         div.col.s6  
                             p Price:
-                                p.gray-text.gray.darken-3= advert.vehicle.price + 'lv'
+                                bold= advert.vehicle.price + 'lv'
                             p City:
                                 bold= advert.location
                             p Manufacturer: 
@@ -29,12 +29,25 @@ block content
                             p FuelType:
                                 bold= advert.vehicle.fuelType
                     div.row
-                        div.col.s12            
+                        div.col.s6            
                             p Description:
                                 bold= advert.description
                             p Posted by:
                                 a(href="/users/"+advert.postedBy.username)=advert.postedBy.username 
                             p Posted on: 
-                                bold=advert.postedOn   
+                                bold=advert.postedOn
+                            if advert.comments.length
+                                p Here are the comments
+                            else
+                                p No comments
+                        div.col.s6
+                            form(name="addComment" method="post" class="col s12")
+                                div(class="input-field col s12")
+                                    textarea(id="comment" name="comment" class="materialize-textarea")
+                                    label(for="comment" class="active") Write your comment!
+                                button(type="submit" class="waves-effect waves-dark btn right") Comment!
+                                    i(class="material-icons tiny right") play_arrow
+                                
+                                 
                     
                 
