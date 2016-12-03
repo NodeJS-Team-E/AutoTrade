@@ -7,6 +7,7 @@ const config = require("./constants"),
     userController = require("../controllers/users-controller")(data),
     messageController = require("../controllers/messages-controller")(data),
     homeController = require("../controllers/home-controller"),
+    searchController = require("../controllers/search-controller")(data),
     router = require("express").Router();
 
 module.exports = app => {
