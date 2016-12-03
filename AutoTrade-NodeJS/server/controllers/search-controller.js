@@ -21,10 +21,8 @@ module.exports = data => {
             'manufacturer': manufacturer,
             'price': price
         };
-        //let foundAdvertsByLocationIds = [];
-        //let foundVehicleIdsByLocations = [];
-        //let filteredVehiclesId = [];
         let foundVehiclesIdsBySearch = [];
+        let foundAdvertsByLocation = [];
 
         let vehicles = data.vehicleData.getFilteredVehicles(query)
             .then(vehicles => {
@@ -33,12 +31,16 @@ module.exports = data => {
                     let currentVehicleId = vehicles[key]["_id"];
                     foundVehiclesIdsBySearch.push(currentVehicleId);
                 });
-                console.log(foundVehiclesIdsBySearch);
+                // console.log(foundVehiclesIdsBySearch);
                 return data.advertData.getAdvertByVehicleIds(foundVehiclesIdsBySearch);
             }).then(adverts => {
-                data.advertData.findByLocation(adverts);
-                console.log(adverts);
-            })
+                Object.keys(adverts).forEach(function(key) {
+                    let currentAdvertLocation = adverts[key]["location"];
+                    if (currentAdvertLocation === location) {
+                        //    console.log(adverts);
+                    }
+                });
+            }).catch((err) => console.log(err));
     }
     return {
         getBasicSearch,
