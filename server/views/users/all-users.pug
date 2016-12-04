@@ -1,6 +1,6 @@
 extends ../_layout
 block content
-    each user in users
+    each user in result.users
         div(class="row")
             div(class="col s12 m7")
                 div(class="divider")
@@ -16,4 +16,16 @@ block content
                                 p="Email " + user.email 
                                 p="For contact " + user.phoneNumber 
                             div(class="card-action")
-                                a(href="users/"+user.username) Details    
+                                a(href="users/"+user.username) Details
+
+    if result.pagination.active
+        nav(aria-label="navigation")
+            ul.pagination
+                if result.pagination.previous.active
+                    li
+                    a(href= "/users?page=" + result.pagination.previous.value + "&size=" + result.pagination.pageSize aria-label="Previous")
+                        i(aria-hidden="true" class="material-icons tiny left") fast_rewind
+                if result.pagination.next.active
+                    li
+                    a(href= "/users?page=" + result.pagination.next.value + "&size=" + result.pagination.pageSize aria-label="Next")
+                        i(aria-hidden="true" class="material-icons tiny right") fast_forward

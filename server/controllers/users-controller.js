@@ -5,6 +5,45 @@ let notifier = require("../utilities/notifier");
 module.exports = function(data) {
     return {
         getAllUsers(req, res) {
+            const page = +req.query.page || 0;
+            const size = +req.query.size || 3;
+
+            data.userData.allUsersWithPagination(page, size)
+                .then(([users, pageCount]) => {
+                    if (users) {
+                        if (pageCount < page) {
+                            return res.redirect(`/users?page=${pageCount - 1}&size=${size}`);
+                        }
+
+                        const pagination = {
+                            active: +pageCount > 1,
+                            pageSize: size,
+                            previous: {
+                                active: +page > 0,
+                                value: +page - 1
+                            },
+                            next: {
+                                active: +page < +pageCount - 1,
+                                value: +page + 1
+                            }
+                        };
+                        const user = req.user;
+                        return res.status(200).render("users/all-users", {
+                            result: {
+                                users,
+                                user,
+                                pagination
+                            }
+                        });
+                    } else {
+                        res.status(404).redirect("/error");
+                    }
+                }).catch((err) => {
+                    res.send(err.message);
+                });
+        },
+        
+        /*getAllUsers(req, res) {
             data.userData.all()
                 .then(users => {
                     if (users) {
@@ -17,7 +56,7 @@ module.exports = function(data) {
                     }
 
                 })
-        },
+        },*/
 
         getLoginForm(req, res) {
             res.status(200).render("users/login");
