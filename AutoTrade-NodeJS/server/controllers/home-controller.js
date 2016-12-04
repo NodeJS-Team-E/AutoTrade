@@ -1,12 +1,14 @@
 'use strict';
-module.exports = {
-    getHome: (req, res) => {
-        res.render("home/home", {
-            user: req.user
-        });
+module.exports = function() {
+    return {
+        getHome: (req, res) => {
+            res.render("home/home", {
+                user: req.user
+            });
 
-    },
-    getAdvancedSearch: (req, res) => {
-        res.render("noplacetogo/search-panel");
+        },
+        getAdvancedSearch: (req, res) => {
+            res.render("noplacetogo/search-panel");
+        }
     }
 }

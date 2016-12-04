@@ -16,7 +16,7 @@ app.use(session({
 }));
 require('./passport/')(app);
 require("./express")(app, constants);
-require("./router")(app);
+//require("./router")(app);
 require("./db")(constants);
 
 module.exports = app;

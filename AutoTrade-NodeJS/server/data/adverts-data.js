@@ -1,6 +1,8 @@
 /* globals Promise */
 'use strict';
 
+const userModel = require("../models/user-model");
+
 module.exports = function(Advert) {
     function create(options) {
         const advert = new Advert({
@@ -138,6 +140,26 @@ module.exports = function(Advert) {
         return promise;
     }
 
+    function addCommentToAdvert(id, content, author) {
+        return new Promise((resolve, reject) => {
+            let comment = {
+                content,
+                author: { name: author.name }
+            };
+
+            Advert.findByIdAndUpdate(id, { $push: { comments: comment } },
+                (err, advert) => {
+                    if (err) {
+                        reject(err);
+                    }
+                    resolve(advert);
+                }
+            );
+        });
+    }
+
+
+
 
     return {
         create,
@@ -147,7 +169,8 @@ module.exports = function(Advert) {
         getAdvertById,
         getAllAdvertsWithPagination,
         updateAdvert,
-        getAdvertByVehicleIds
+        getAdvertByVehicleIds,
+        addCommentToAdvert
 
     };
 };
