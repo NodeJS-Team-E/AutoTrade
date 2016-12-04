@@ -19,5 +19,12 @@ block content
                                     p="Location: " + advert.location 
                                     
                                 div(class="card-action")
-                                    a(href='/adverts/'+advert._id) Details
-        
+                                    a(href='/adverts/'+advert._id) advert-details.pug
+                
+        ul(class="pagination center")
+            li(class="disabled")
+                a(href="#!")
+                i(class="material-icons") chevron_left
+            li(class="waves-effect")
+                a(href="#!")
+                i(class="material-icons") chevron_right
