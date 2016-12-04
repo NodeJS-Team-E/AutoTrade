@@ -1,0 +1,21 @@
+extends ../_layout
+block content
+    div(class="row")
+         div(class="col s4 push-s4")
+            div(class="card small hoverable")
+                form(name="update-profile" method="post")
+                    div(class="row")
+                        div(class="input-field col s4")
+                            input(type="text" id="newEmail" name="newEmail" class="validate")
+                            label(for="newEmail" class="active") New email
+                        div(class="input-field col s4")
+                            input(type="text" id="newPhone" name="newPhone" class="validate")
+                            label(for="newPhone" class="active") New phone
+                        div(class="input-field col s4")
+                            input(type="url" id="newPicture" name="newPicture" class="validate")
+                            label(for="newPicture" class="active") New picture
+                        button(type="submit" class="waves-effect waves-dark btn right") Update profile!
+                            i(class="material-icons tiny right") done    
+
+
+

@@ -1,0 +1,30 @@
+extends ../_layout
+block content
+    br
+    h6(class="right-align") Didn't find what you're looking for?
+    a(href="/search/basic" class="right") Go Back and try again
+    h4(class="left-align") Search results:
+        div(class="collection")
+        if adverts
+        each advert in adverts
+            div(class="row")
+                div(class="col s12 m7")
+                    div(class="divider")
+                    div(class="section")
+                        h5(class="header")= advert.title
+                    div(class="divider")
+                    div(class="section")
+                        div(class="card horizontal small hoverable")
+                            div(class="card-image")
+                                img(class="responsive-img" src=advert.vehicle.vehiclePicture[0])
+                            div(class="card-stacked")
+                                div(class="card-content")
+                                    p="Manufacturer: " +  advert.vehicle.manufacturer
+                                    p="Price: " + advert.vehicle.price + 'lv'
+                                    p="Location: " + advert.location 
+                                    
+                                div(class="card-action")
+                                    a(href='/adverts/'+advert._id) Details
+        else
+            br
+            h5(class="left-align") Sorry, no matches were found!
