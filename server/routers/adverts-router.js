@@ -10,6 +10,7 @@ module.exports = function({ app, controller }) {
         .post("/adverts/:id", controller.addComment)
         .get("/create-advert", controller.getAdvertCreateForm)
         .post("/create-advert", controller.create)
+        .get("/home", controller.listNewest)
 
     app.use(router);
 
