@@ -77,13 +77,43 @@ module.exports = function(Vehicle) {
 
     function getFilteredVehicles(options) {
         let promise = new Promise((resolve, reject) => {
-            let price = options.price,
-                location = options.location,
-                manufactureDate = options.manufactureDate,
+            let manufactureDate = options.manufactureDate,
                 manufacturer = options.manufacturer,
+                price = options.price,
+                //
+                category = options.category,
+                fuelType = options.fuelType,
+                transmission = options.transmission,
+                color = options.color,
+                mileage = options.mileage,
                 andCriteria = [{}],
                 filter = {};
 
+             if (category) {
+                andCriteria.push({
+                    'category': category
+                });
+            }
+             if (fuelType) {
+                andCriteria.push({
+                    'fuelType': fuelType
+                });
+            }
+            if (transmission) {
+                andCriteria.push({
+                    'transmission': transmission
+                });
+            }
+            if (color) {
+                andCriteria.push({
+                    'color': color
+                });
+            }
+             if (mileage) {
+                andCriteria.push({
+                    'mileage': mileage
+                });
+            }
             if (price) {
                 andCriteria.push({
                     'price': price
