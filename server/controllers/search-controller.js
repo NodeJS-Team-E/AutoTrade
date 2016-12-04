@@ -40,7 +40,6 @@ module.exports = data => {
                 });
                 return data.advertData.getAdvertByVehicleIds(foundVehiclesIdsBySearch);
             }).then(adverts => {
-                console.log(adverts);
                 res.render("search/search-results", {
                     adverts: adverts,
                     user: req.user

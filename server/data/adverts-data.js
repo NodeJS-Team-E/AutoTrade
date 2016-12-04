@@ -125,6 +125,21 @@ module.exports = function(Advert) {
         return promise;
     }
 
+    function getAdvertByVehicleIds(idArr) {
+        let promise = new Promise((resolve, reject) => {
+            Advert.find({ 'vehicle': { $in: idArr } })
+                .populate('vehicle').populate("postedBy")
+                .exec((err, res) => {
+                    if (err) {
+                        return reject(err);
+                    }
+                    return resolve(res);
+                });
+        })
+
+        return promise;
+    }
+
     return {
         create,
         findByLocation,
@@ -132,7 +147,8 @@ module.exports = function(Advert) {
         getAdvertById,
         getAllAdvertsWithPagination,
         addComment,
-        sortByNewlyCreated
+        sortByNewlyCreated,
+        getAdvertByVehicleIds
 
     };
 };
