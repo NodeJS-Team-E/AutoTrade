@@ -99,6 +99,18 @@ module.exports = function(data) {
             });
     }
 
+    // function addComment(req, res) {
+    //     if (!req.isAuthenticated()) {
+    //         return res.status(401).render("noplacetogo/unauthorized");
+    //     }
+    //     let id = req.params.id;
+    //     let content = req.body.content;
+
+    //     let author = req.user.profile.name;
+
+    //     data.advertData.addCommentToAdvert(content,author)
+    // }
+
     return {
         getCreateForm,
         create,
