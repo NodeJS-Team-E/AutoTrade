@@ -1,6 +1,12 @@
 # AutoTrade
 Repository for the Telerik Academy's nodeJS course project
 
+# Contrubutors
+- **Krasimira Kirilova**
+- **Desislava Ivanova**
+- **Yavor Yanchev**
+- **Stefan Slavev**
+
 # Course Project
 _Web applications with Node.js_
 
