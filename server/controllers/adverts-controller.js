@@ -106,6 +106,16 @@ module.exports = data => {
             });
     }
 
+    function listNewest(req, res) {
+        data.advertData.sortByNewlyCreated()
+            .then(adverts => {
+                res.render("home/home", {
+                    adverts: adverts,
+                    user: req.user
+                });
+            }).catch((err) => console.log(err));
+    }
+
     return {
         getAdvertCreateForm,
         create,
@@ -113,7 +123,8 @@ module.exports = data => {
         getAdvertById,
         addComment,
         getByIdJSON,
-        getAllAdvertsJSON
+        getAllAdvertsJSON,
+        listNewest
 
     }
 }
