@@ -10,24 +10,24 @@ module.exports = data => {
     }
 
     function basicSearchResults(req, res, next) {
-        let year = req.body.year,
+        let manufactureDate = req.body.manufactureDate,
             manufacturer = req.body.manufacturer,
             price = req.body.price,
             category = req.body.category,
             fuelType = req.body.fuelType,
             transmission = req.body.transmission,
             color = req.body.color,
-            mileage=req.body.mileage;
+            mileage = req.body.mileage;
 
         let query = {
-            'year': year,
+            'manufactureDate': manufactureDate,
             'manufacturer': manufacturer,
             'price': price,
             'category': category,
             'fuelType': fuelType,
             'transmission': transmission,
-            'color':color,
-            'mileage':mileage
+            'color': color,
+            'mileage': mileage
         };
         let foundVehiclesIdsBySearch = [];
         let foundAdvertsByLocation = [];
