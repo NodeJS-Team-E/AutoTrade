@@ -1,6 +1,6 @@
 'use strict';
-module.exports = function(data) {
-    function getCreateForm(req, res) {
+module.exports = data => {
+    function getAdvertCreateForm(req, res) {
         if (!req.isAuthenticated()) {
             res.status(401).render("noplacetogo/unauthorized");
         }
@@ -31,47 +31,34 @@ module.exports = function(data) {
                     postedOn: req.body.postedOn,
                     postedBy: req.user,
                     comments: req.body.comments
-                        //wrap it in an array??
                 }
 
                 data.advertData.create(advert)
                     .then(advert => {
                         if (advert == null) {
                             console.log("Advert not created");
-                            return res.status(404)
+                            return res.status(500)
                                 .redirect("/error");
                         }
+
                         let settings = advert;
-                        data.userData.addAdvert(req.user._id, settings)
-                            .then(user => {
-                                console.log(user);
-                            });
+                        data.userData.addAdvert(req.user._id, settings);
                         res.redirect("/home");
-                    }).catch(err => console.log(err));
-
-
+                    }).catch(err => res.status(500).json(err));
             });
-
     }
 
-    function getAll(req, res) {
+    function getAllAdverts(req, res) {
         data.advertData.all()
             .then(adverts => {
                 res.render("adverts/adverts-list", {
                     adverts: adverts,
                     user: req.user
                 });
-            }).catch((err) => console.log(err));
+            }).catch((err) => res.status(404).json(err));
     }
 
-    function getAllAdvertsJSON(req, res) {
-        data.advertData.all()
-            .then(adverts => {
-                res.json({ adverts });
-            });
-    }
-
-    function getById(req, res) {
+    function getAdvertById(req, res) {
         data.advertData.getAdvertById(req.params.id)
             .then(advert => {
                 if (advert === null) {
@@ -84,6 +71,19 @@ module.exports = function(data) {
                     user: req.user
                 });
             });
+    }
+
+    function addComment(req, res) {
+        if (!req.isAuthenticated()) {
+            res.status(401).render("noplacetogo/unauthorized");
+        }
+        let comment = {
+            username: req.user.username,
+            content: req.body.comment
+        }
+        data.advertData.addComment(req.params.id, comment);
+        //going back to the page
+        res.status(200).redirect("back");
     }
 
     function getByIdJSON(req, res) {
@@ -99,25 +99,21 @@ module.exports = function(data) {
             });
     }
 
-    // function addComment(req, res) {
-    //     if (!req.isAuthenticated()) {
-    //         return res.status(401).render("noplacetogo/unauthorized");
-    //     }
-    //     let id = req.params.id;
-    //     let content = req.body.content;
-
-    //     let author = req.user.profile.name;
-
-    //     data.advertData.addCommentToAdvert(content,author)
-    // }
+    function getAllAdvertsJSON(req, res) {
+        data.advertData.all()
+            .then(adverts => {
+                res.json({ adverts });
+            });
+    }
 
     return {
-        getCreateForm,
+        getAdvertCreateForm,
         create,
-        getAll,
-        getById,
-        getAllAdvertsJSON,
-        getByIdJSON
+        getAllAdverts,
+        getAdvertById,
+        addComment,
+        getByIdJSON,
+        getAllAdvertsJSON
 
     }
 }

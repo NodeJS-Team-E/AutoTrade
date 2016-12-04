@@ -1,32 +1,40 @@
 'use strict';
 module.exports = data => {
-    function getCreateForm(req, res) {
+    function getMessageCreateForm(req, res) {
         if (!req.isAuthenticated()) {
             res.status(401).render("noplacetogo/unauthorized");
         }
         res.render("messages/send-message", { user: req.user });
     }
 
-    function getMessageById(req, res) {
-        data.messageData.findById(req.params._id)
+    function receiveMessage(req, res) {
+        let options = {
+            title: req.body.title,
+            content: req.body.content,
+            from: req.user.username,
+            to: req.params.username
+        }
+        data.messageData.create(options)
             .then(message => {
-                console.log(message);
-            });
+                data.userData.addMessage(req.params.username, message);
+                res.redirect("/users/" + req.params.username);
+            })
     }
 
-    function all(req, res) {
-        // data.messageData.all()
-        //     .then(messages => {
-        //         res.render("messages/messages-list", {
-        //             messages: messages,
-        //             user: req.user
-        //         });
-        //     }).catch((err) => console.log(err));
+    function getMessages(req, res) {
+        if (!req.isAuthenticated()) {
+            res.status(401).render("noplacetogo/unauthorized");
+        }
+        let messages = req.user.messages;
+        res.render("messages/messages-list", {
+            messages: messages,
+            user: req.user
+        })
     }
 
     return {
-        getCreateForm,
-        getMessageById,
-        all
+        getMessageCreateForm,
+        receiveMessage,
+        getMessages
     }
 }

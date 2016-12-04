@@ -1,11 +1,9 @@
 /* globals Promise */
 'use strict';
 
-const userModel = require("../models/user-model");
-
 module.exports = function(Advert) {
     function create(options) {
-        const advert = new Advert({
+        let advert = new Advert({
             title: options.title,
             description: options.description,
             vehicle: options.vehicle,
@@ -29,18 +27,6 @@ module.exports = function(Advert) {
                         }
                         return resolve(advert);
                     })
-            });
-        });
-    }
-
-    function findByTitle(title) {
-        return new Promise((resolve, reject) => {
-            Advert.find({ title }, (err, advert) => {
-                if (err) {
-                    return reject(err);
-                }
-
-                return resolve(advert);
             });
         });
     }
@@ -113,64 +99,25 @@ module.exports = function(Advert) {
         ]);
     }
 
-    function updateAdvert(advert) {
+    function addComment(id, settings) {
         return new Promise((resolve, reject) => {
-            advert.save((err) => {
-                if (err) {
-                    return reject(err);
-                }
+            Advert.findOne({ _id: id })
+                .then(advert => {
+                    advert.comments.push(settings);
 
-                return resolve(advert);
-            });
+                    advert.save();
+                    return resolve(advert);
+                }).catch(err => reject(err));
         });
     }
-
-    function getAdvertByVehicleIds(idArr) {
-        let promise = new Promise((resolve, reject) => {
-            Advert.find({ 'vehicle': { $in: idArr } }).populate('vehicle').populate("postedBy")
-                .exec((err, res) => {
-                    if (err) {
-                        return reject(err);
-                    }
-                    // console.log(res);
-                    return resolve(res);
-                });
-        })
-
-        return promise;
-    }
-
-    function addCommentToAdvert(id, content, author) {
-        return new Promise((resolve, reject) => {
-            let comment = {
-                content,
-                author: { name: author.name }
-            };
-
-            Advert.findByIdAndUpdate(id, { $push: { comments: comment } },
-                (err, advert) => {
-                    if (err) {
-                        reject(err);
-                    }
-                    resolve(advert);
-                }
-            );
-        });
-    }
-
-
-
 
     return {
         create,
-        findByTitle,
         findByLocation,
         all,
         getAdvertById,
         getAllAdvertsWithPagination,
-        updateAdvert,
-        getAdvertByVehicleIds,
-        addCommentToAdvert
+        addComment
 
     };
 };

@@ -1,22 +1,19 @@
 mixin site-navigation
-    nav.teal.darken-2                
-        div.nav-wrapper
-            a(href="#").brand-logo Borat Logo
+    nav(class="teal darken-2")               
+        div(class="nav-wrapper")
+            //img(src="/images/logo.png").brand-logo
             if user
-                ul.right.hide-on-med-and-down                
+                ul(class="right hide-on-med-and-down")                
                     li
                         a(href="/home") Home
                     li
                         a(href="/adverts") Adverts
                        
                     li
-                        a.dropdown-button(href="/profile", data-activates="dropdown1") Profile
-                            i.material-icons.right arrow_drop_down
+                        a(class="dropdown-button" href="/users", data-activates="dropdown1") Users
+                            i(class="material-icons right") arrow_drop_down
                     li
                         a(href="/create-advert") Create Advert
-                    
-                    li
-                        a(href="/about") About
                     li
                         a(href="/profile") Hello, 
                             bold(class="lime-text")=user.username
@@ -25,13 +22,14 @@ mixin site-navigation
                         a(href="/logout" class="lime-text") Wanna logout?
                             
             else
-                ul.right.hide-on-med-and-down                
+                ul(class="right hide-on-med-and-down")                
                     li
                         a(href="/home") Home
                     li
                         a(href="/adverts") Adverts
                     li
-                        a(href="/about") About    
+                        a(class="dropdown-button" href="/users", data-activates="dropdown1") Users
+                            i(class="material-icons right") arrow_drop_down    
                     li
                         a(href="/register") Register
                     li

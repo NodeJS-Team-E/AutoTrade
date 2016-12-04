@@ -1,28 +1,29 @@
 extends ../_layout
 block content        
-    div.col
-        div.card-panel
-          div.row.valign-wrapper
-            div.col.s2
-              img.responsive-img(src=otherUser.pictureUrl alt="") 
+        div(class="card-panel")
+          div(class="row valign-wrapper")
+            div(class="col s2")
+              img(class="responsive-img" src=otherUser.pictureUrl alt="") 
               center=otherUser.username
-            div.col.s10
-              
-              div(class="card small")
-                
-                    
+            div(class="col s10")
+              div(class="card small")     
                 div(class="card-content")
-                    p Email:  
-                        small=otherUser.email
-                    p PhoneNumber: 
-                        small=otherUser.phoneNumber
-                    a(href="/send-message/"+otherUser.username) Send a message                  
-                       
-                    if otherUser.adverts
-                        p Adverts by 
-                            i=otherUser.username
-                        each advert in otherUser.adverts
-                            
-                            div.card
-                                a(href="/adverts/"+advert.id) #{advert.title}
-                                strong=advert.description
+                        div(class="col s6")
+                            small="Email: " + otherUser.email
+                            br  
+                            small="PhoneNumber: " + otherUser.phoneNumber
+                            br 
+                        div(class="col s6")
+                            a(href="/send-message/"+otherUser.username) Send a message     
+                        div(class="col s12")        
+                            if otherUser.adverts
+                                p Adverts
+                                each advert in otherUser.adverts
+                                        div(class="content")
+                                            div(class="section")
+                                                a(href="/adverts/"+advert.id) #{advert.title}
+                                            div(class="divider")                                           
+                            else
+                                h5=otherUser.username + "has no adverts yet!"    
+                                         
+                                        

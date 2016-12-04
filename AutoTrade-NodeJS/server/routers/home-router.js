@@ -9,13 +9,6 @@ module.exports = function({ app, controller }) {
     });
     router
         .get("/home", controller.getHome)
-        .get("/about", (req, res) => {
-            res.render("noplacetogo/about", {
-                user: req.user
-            })
-        });
-
-
 
     app.use(router);
 

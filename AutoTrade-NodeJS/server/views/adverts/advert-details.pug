@@ -1,53 +1,61 @@
 extends ../_layout
 block content
-    a(href="/adverts") Go back to all adverts
-
-    div.col.s12.m7
-        h4.header= advert.title
-        div.card.horizontal.medium
-            div.card-image
-                img.responsive-img(src=advert.vehicle.vehiclePicture[0] height="100" width="100")
-            div.card-stacked
-                div.card-content
-                    div.row
-                        div.col.s6  
-                            p Price:
-                                bold= advert.vehicle.price + 'lv'
-                            p City:
-                                bold= advert.location
-                            p Manufacturer: 
-                                bold= advert.vehicle.manufacturer
-                            p Color: 
-                                bold= advert.vehicle.color
-                        div.col.s6            
-                            p Mileage:
-                                bold= advert.vehicle.mileage
-                            p ManufactureDate:
-                                bold= advert.vehicle.manufactureDate
-                            p Transmission:
-                                bold= advert.vehicle.transmission
-                            p FuelType:
-                                bold= advert.vehicle.fuelType
-                    div.row
-                        div.col.s6            
-                            p Description:
-                                bold= advert.description
-                            p Posted by:
-                                a(href="/users/"+advert.postedBy.username)=advert.postedBy.username 
-                            p Posted on: 
-                                bold=advert.postedOn
-                            if advert.comments.length
-                                p Here are the comments
-                            else
-                                p No comments
-                        div.col.s6
-                            form(name="addComment" method="post" class="col s12")
-                                div(class="input-field col s12")
-                                    textarea(id="comment" name="comment" class="materialize-textarea")
-                                    label(for="comment" class="active") Write your comment!
-                                button(type="submit" class="waves-effect waves-dark btn right") Comment!
+    a(href="/adverts" class="waves-effect waves-teal btn-flat") Go back to all adverts
+        i(class="material-icons left") keyboard_return
+    div(class="col s12 m7")
+        div(class="divider")
+        div(class="section")
+            h5(class="header")= advert.title
+        div(class="divider")
+        div(class="section")
+        div(class="card horizontal meduim")
+            div(class="card-image")
+                img(class="responsive-img" src=advert.vehicle.vehiclePicture[0])
+            div(class="card-stacked")
+                div(class="card-content")
+                    div(class="row")
+                        div(class="col s4") 
+                            p="Price: " + advert.vehicle.price + 'lv'     
+                            p="City: " +  advert.location    
+                            p="Manufacturer: " + advert.vehicle.manufacturer     
+                            p="Color: " + advert.vehicle.color
+                        div(class="col s4")          
+                            p="Mileage: " + advert.vehicle.mileage
+                            p="Manufacture date: " + advert.vehicle.manufactureDate
+                            p="Transmission: " + advert.vehicle.transmission
+                            p="Fuel type: " +  advert.vehicle.fuelType
+                        div(class="col s4")            
+                            p="Description: " + advert.description   
+                            strong="Posted by: " 
+                            a(href="/users/"+ advert.postedBy.username)=advert.postedBy.username
+                            
+                            p="On: " + advert.postedOn  
+                    div(class="row")
+                        div(class="input-filed s6 offset-6")
+                            form(method="post" name="commentForm")
+                                label(for="comment" class="active") Write a comment!
+                                textarea(class="materialize-textarea" id="comment" name="comment")
+                                button(type="submit" class="waves-effect btn right") Send
                                     i(class="material-icons tiny right") play_arrow
+        
+        if !advert.comments
+            div(class="row")
+                div(class="col s12")
+                    p This advert has no comments yet!
+        else
+            div(class="row")
+                div(class="col s12")
+                    div(class="card")
+                        each comment in advert.comments
+                            div(class="card-content")
+                                div(class="divider")
                                 
-                                 
+                                div(class="section")
+                                    p="User " +comment.username + " " + "commented: "
+                                div(class="divider")
+                                div(class="section")
+                                    span(class="teal-text text-teal-darken-2")=comment.content
+                                                                
+                                           
                     
                 
