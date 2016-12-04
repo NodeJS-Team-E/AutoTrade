@@ -5,7 +5,8 @@
   "main": "main.js",
   "scripts": {
     "test": ".\\node_modules\\.bin\\mocha tests",
-    "start": "nodemon app.js"
+    "start": "nodemon app.js",
+    "postinstall": "./node_modules/.bin/bower install"
   },
   "author": "",
   "license": "ISC",
