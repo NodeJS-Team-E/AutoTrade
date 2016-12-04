@@ -73,7 +73,7 @@ block content
                         option(value="1500")  &euro;1500
                         option(value="1000")  &euro;1000
                 div(class="input-field col s3")
-                    select(name="year" class="browser-default  grey lighten-3") 
+                    select(name="manufactureDate" class="browser-default  grey lighten-3") 
                         option(selected="" value="") From Year  
                         option(value="2016") 2016 
                         option(value="2015") 2015 
@@ -93,15 +93,34 @@ block content
                         option(value="2001") 2001 
                         option(value="2000") 2000
                 div(class="input-field col s3" )      
-                    select(name="location" class="browser-default  grey lighten-3") 
-                        option(selected="" value="") Choose Region 
-                        option(value="sofia") Sofia
-                        option(value="plovdiv") Plovdiv
-                        option(value="varna") Varna
-                        option(value="burgas") Burgas
-                        option(value="pernik") Pernik
-                        option(value="montana") Montana
-                        option(value="dobrich") Dobrich
-                        option(value="mladost") Forda na mladost 1    
+                    select(name="category" class="browser-default  grey lighten-3") 
+                        option(selected="" value="") Choose Category 
+                        option(value="truck") Truck
+                        option(value="car") Car
+                        option(value="bus") Bus
+                div(class="input-field col s3" )      
+                    select(name="transmission" class="browser-default  grey lighten-3") 
+                        option(selected="" value="") Choose Transmission 
+                        option(value="automatic") Automatic
+                        option(value="manual") Manual
+                        option(value="automanual") Automanual
+                div(class="input-field col s3" )      
+                    select(name="fuelType" class="browser-default  grey lighten-3") 
+                        option(selected="" value="") Choose Fuel 
+                        option(value="diesel") Diesel
+                        option(value="gas") Gas
+                        option(value="hybrid") Hybrid
+                div(class="input-field col s3" )      
+                    select(name="color" class="browser-default  grey lighten-3") 
+                        option(selected="" value="") Choose Color 
+                        option(value="black") Black
+                        option(value="white") White
+                        option(value="blue") Blue 
+                div(class="input-field col s3" )      
+                    select(name="mileage" class="browser-default  grey lighten-3") 
+                        option(selected="" value="") Choose Mileage 
+                        option(value="") 
+                        option(value="")
+                        option(value="")           
             button(type="submit" class="waves-effect waves-dark btn right") Search!
                 i(class="material-icons tiny right") search    
