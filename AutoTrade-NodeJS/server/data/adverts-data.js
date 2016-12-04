@@ -123,9 +123,9 @@ module.exports = function(Advert) {
         });
     }
 
-    function getAdvertByVehicleIds(...idArr) {
+    function getAdvertByVehicleIds(idArr) {
         let promise = new Promise((resolve, reject) => {
-            Advert.find({ 'vehicle': { $in: idArr } })
+            Advert.find({ 'vehicle': { $in: idArr } }).populate('vehicle').populate("postedBy")
                 .exec((err, res) => {
                     if (err) {
                         return reject(err);
