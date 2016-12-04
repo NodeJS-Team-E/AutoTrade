@@ -3,5 +3,8 @@ extends ../_layout
 block content
     h4(class="center-align") Borat's Autotrade - Kazakhstan's finest deals, is nice!
         div(class="container")
-            a(href="/search/basic" class="waves-effect waves-dark btn center") Basic Search
-            a(href="/search/advanced" class="waves-effect waves-dark btn ceter") Detail Search
+                img.borat-logo(src='http://i67.tinypic.com/2vu0uj6.png')
+                br
+                a(href="/search/basic" class="waves-effect waves-dark btn center") Search Deals         
+    h5(class="center") Newest Adverts
+    include ../adverts/adverts-list-sorted.pug
