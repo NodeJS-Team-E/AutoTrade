@@ -112,7 +112,10 @@ module.exports = function(Advert) {
 
     function sortByNewlyCreated() {
         let promise = new Promise((resolve, reject) => {
-            Advert.find().sort({ 'postedOn': -1 }).populate('vehicle').populate("postedBy")
+            Advert.find().sort({ 'postedOn': -1 })
+            .limit(5)
+            .populate('vehicle')
+            .populate("postedBy")
                 .exec((err, res) => {
                     if (err) {
                         return reject(err);
