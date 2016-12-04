@@ -111,13 +111,28 @@ module.exports = function(Advert) {
         });
     }
 
+    function sortByNewlyCreated() {
+        let promise = new Promise((resolve, reject) => {
+            Advert.find().sort({ 'postedOn': 'asc' }).populate('vehicle').populate("postedBy")
+                .exec((err, res) => {
+                    if (err) {
+                        return reject(err);
+                    }
+                    // console.log(res);
+                    return resolve(res);
+                });
+        });
+        return promise;
+    }
+
     return {
         create,
         findByLocation,
         all,
         getAdvertById,
         getAllAdvertsWithPagination,
-        addComment
+        addComment,
+        sortByNewlyCreated
 
     };
 };
