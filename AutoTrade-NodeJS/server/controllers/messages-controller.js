@@ -7,7 +7,7 @@ module.exports = data => {
         res.render("messages/send-message", { user: req.user });
     }
 
-    function getById(req, res) {
+    function getMessageById(req, res) {
         data.messageData.findById(req.params._id)
             .then(message => {
                 console.log(message);
@@ -26,7 +26,7 @@ module.exports = data => {
 
     return {
         getCreateForm,
-        getById,
+        getMessageById,
         all
     }
 }
