@@ -8,6 +8,11 @@ module.exports = function({ app, controller }) {
         .get("/basic", controller.getBasicSearch)
         .post("/basic", controller.basicSearchResults)
         .get("/advanced", controller.getAdvancedSearch)
+        .get("/", (req, res) => {
+            let username = req.query.username;
+            let urlToRedirect = `/users/${username}`;
+            res.redirect(urlToRedirect);
+        });
 
 
 

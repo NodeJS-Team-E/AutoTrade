@@ -2,6 +2,8 @@ mixin site-navigation
     nav(class="teal darken-2")               
         div(class="nav-wrapper")
             //img(src="/images/logo.png").brand-logo
+            link(rel='stylesheet', type='text/css', href='/static/bower_components/jquery-ui/themes/base/jquery-ui.css')
+            
             if user
                 ul(class="right hide-on-med-and-down")                
                     li
@@ -22,7 +24,9 @@ mixin site-navigation
                         a(href="/logout" class="lime-text") Wanna logout?
                             
             else
-                ul(class="right hide-on-med-and-down")                
+                ul(class="right hide-on-med-and-down")
+                    li
+                                       
                     li
                         a(href="/home") Home
                     li
@@ -35,4 +39,6 @@ mixin site-navigation
                     li
                         a(href="/login") Hello, stranger!
                     li
-                        a(href="/login" class="lime-text") Wanna sign in?        
+                        a(href="/login" class="lime-text") Wanna sign in?
+    
+                             

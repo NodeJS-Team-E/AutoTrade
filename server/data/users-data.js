@@ -130,8 +130,9 @@ module.exports = function(User) {
 
                     resolve(user);
                 }).catch(err => reject(err));
-        })
+        });
     }
+
 
     function addMessage(username, message) {
         return new Promise((resolve, reject) => {
@@ -144,9 +145,22 @@ module.exports = function(User) {
 
                     resolve(user);
                 }).catch(err => reject(err));
-        })
+        });
     }
-    
+
+    function getAllUsernames() {
+        return new Promise((resolve, reject) => {
+            User.find({}, "username", (err, usernames) => {
+                if (err) {
+                    return reject(err);
+                }
+
+                return resolve(usernames);
+            });
+        });
+    }
+
+
 
     return {
         create,
@@ -157,6 +171,7 @@ module.exports = function(User) {
         updateUserPhoneNumber,
         updateUser,
         addAdvert,
-        addMessage
+        addMessage,
+        getAllUsernames
     };
 };

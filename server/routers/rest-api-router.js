@@ -7,7 +7,8 @@ module.exports = function({ app, controller }) {
     router.get("/adverts", controller.getAllAdvertsJSON)
         .get("/users", controller.getAllUsersJSON)
         .get("/adverts/:id", controller.getByIdJSON)
-        .get("/users/:id", controller.getUsersByIdJSON);
+        .get("/users/:id", controller.getUsersByIdJSON)
+        .get("/usernames", controller.getAllUserNames);
 
 
 

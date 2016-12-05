@@ -19,6 +19,8 @@
     "tests"
   ],
   "dependencies": {
-    "notifier": "^1.1.2"
+    "notifier": "^1.1.2",
+    "jquery-ui": "^1.12.1",
+    "Autocomplete": "autocomplete#^2.0.5"
   }
 }

@@ -91,6 +91,15 @@ module.exports = function(data) {
                 .then(user => {
                     res.json({ user });
                 });
+        },
+
+        getAllUserNames(req, res) {
+            return data.userData.getAllUsernames()
+                .then(usernames => {
+                    let responseUsernames = usernames.map(u => u.username);
+                    res.json(responseUsernames);
+                });
         }
+
     }
 }
