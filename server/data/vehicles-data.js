@@ -77,56 +77,41 @@ module.exports = function(Vehicle) {
 
     function getFilteredVehicles(options) {
         let promise = new Promise((resolve, reject) => {
-            let manufactureDate = options.manufactureDate,
-                manufacturer = options.manufacturer,
-                price = options.price,
-                //
-                category = options.category,
-                fuelType = options.fuelType,
-                transmission = options.transmission,
+            let manufacturer = options.manufacturer,
                 color = options.color,
-                mileage = options.mileage,
+                transmission = options.transmission,
+                fuelType = options.fuelType,
+                category = options.category,
                 andCriteria = [{}],
                 filter = {};
 
-             if (category) {
+            if (manufacturer) {
                 andCriteria.push({
-                    'category': category
+                    'manufacturer': manufacturer
                 });
             }
-             if (fuelType) {
-                andCriteria.push({
-                    'fuelType': fuelType
-                });
-            }
-            if (transmission) {
-                andCriteria.push({
-                    'transmission': transmission
-                });
-            }
+
             if (color) {
                 andCriteria.push({
                     'color': color
                 });
             }
-             if (mileage) {
+
+            if (transmission) {
                 andCriteria.push({
-                    'mileage': mileage
+                    'transmission': transmission
                 });
             }
-            if (price) {
+
+            if (fuelType) {
                 andCriteria.push({
-                    'price': price
+                    'fuelType': fuelType
                 });
             }
-            if (manufactureDate) {
+
+            if (category) {
                 andCriteria.push({
-                    'manufactureDate': manufactureDate
-                });
-            }
-            if (manufacturer) {
-                andCriteria.push({
-                    'manufacturer': manufacturer
+                    'category': category
                 });
             }
 
@@ -143,7 +128,107 @@ module.exports = function(Vehicle) {
         });
 
         return promise;
+    }
 
+    function getFilteredVehiclesPrice(options) {
+        let promise = new Promise((resolve, reject) => {
+            let fromPrice = options.fromPrice,
+                toPrice = options.toPrice,
+                betweenValuesCriteria = {},
+                filter = {};
+
+            if (fromPrice) {
+                betweenValuesCriteria["$gt"] = +fromPrice;
+            } else {
+                betweenValuesCriteria["$gt"] = +0;
+            }
+
+            if (toPrice) {
+                betweenValuesCriteria["$lt"] = +toPrice;
+            } else {
+                betweenValuesCriteria["$lt"] = +10000000;
+            }
+            filter.price = betweenValuesCriteria;
+
+            Vehicle.find(filter)
+                .exec((err, res) => {
+                    if (err) {
+                        return reject(err);
+                    }
+
+                    return resolve(res);
+                });
+        });
+
+        return promise;
+    }
+
+    function getFilteredVehiclesYear(options) {
+        let promise = new Promise((resolve, reject) => {
+            let manufactureDateFrom = options.manufactureDateFrom,
+                manufactureDateTo = options.manufactureDateTo,
+                betweenValuesCriteria = {},
+                filter = {};
+
+            if (manufactureDateFrom) {
+                betweenValuesCriteria["$gt"] = +manufactureDateFrom;
+            } else {
+                betweenValuesCriteria["$gt"] = +0;
+            }
+
+            if (manufactureDateTo) {
+                betweenValuesCriteria["$lt"] = +manufactureDateTo;
+            } else {
+                betweenValuesCriteria["$lt"] = +10000000;
+            }
+
+            filter.manufactureDate = betweenValuesCriteria;
+
+            Vehicle.find(filter)
+                .exec((err, res) => {
+                    if (err) {
+                        return reject(err);
+                    }
+
+                    return resolve(res);
+                });
+        });
+
+        return promise;
+    }
+
+    function getFilteredVehiclesMileage(options) {
+        let promise = new Promise((resolve, reject) => {
+            let mileageFrom = options.mileageFrom,
+                mileageTo = options.mileageTo,
+                betweenValuesCriteria = {},
+                filter = {};
+
+            if (mileageFrom) {
+                betweenValuesCriteria["$gt"] = +mileageFrom;
+            } else {
+                betweenValuesCriteria["$gt"] = +0;
+            }
+
+            if (mileageTo) {
+                betweenValuesCriteria["$lt"] = +mileageTo;
+            } else {
+                betweenValuesCriteria["$lt"] = +10000000;
+            }
+
+            filter.mileage = betweenValuesCriteria;
+
+            Vehicle.find(filter)
+                .exec((err, res) => {
+                    if (err) {
+                        return reject(err);
+                    }
+
+                    return resolve(res);
+                });
+        });
+
+        return promise;
     }
 
     return {
@@ -152,6 +237,9 @@ module.exports = function(Vehicle) {
         findByVehicleType,
         all,
         findById,
-        getFilteredVehicles
+        getFilteredVehicles,
+        getFilteredVehiclesPrice,
+        getFilteredVehiclesYear,
+        getFilteredVehiclesMileage
     };
 };
