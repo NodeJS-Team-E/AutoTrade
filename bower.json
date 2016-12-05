@@ -1,0 +1,26 @@
+{
+    "name": "advert-market-node-js-project",
+    "description": "course project",
+    "main": "app.js",
+    "authors": [
+        "YavorYanchev",
+        "Krasimira Kirilova",
+        "Desislava Ivanova",
+        "Stefan Slavev"
+    ],
+    "license": "ISC",
+    "homepage": "https://github.com/NodeJS-Team-E/AutoTrade",
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "public/bower_components",
+        "test",
+        "tests"
+    ],
+    "dependencies": {
+        "notifier": "^1.1.2",
+        "jquery-ui": "^1.12.1",
+        "Autocomplete": "autocomplete#^2.0.5"
+    }
+}
