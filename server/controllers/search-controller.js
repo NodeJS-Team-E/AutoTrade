@@ -5,32 +5,34 @@ module.exports = data => {
         res.render("search/basic-search")
     }
 
-    function getAdvancedSearch(req, res) {
-        res.render("search/advanced-search");
+    function getSearchByYear(req, res) {
+        res.render("search/search-date")
+    }
+
+    function getSearchByPrice(req, res) {
+        res.render("search/search-price")
+    }
+
+    function getSearchMileage(req, res) {
+        res.render("search/search-mileage")
     }
 
     function basicSearchResults(req, res, next) {
-        let manufactureDate = req.body.manufactureDate,
-            manufacturer = req.body.manufacturer,
-            price = req.body.price,
-            category = req.body.category,
-            fuelType = req.body.fuelType,
-            transmission = req.body.transmission,
+        let manufacturer = req.body.manufacturer,
             color = req.body.color,
-            mileage = req.body.mileage;
+            transmission = req.body.transmission,
+            fuelType = req.body.fuelType,
+            category = req.body.category;
 
         let query = {
-            'manufactureDate': manufactureDate,
             'manufacturer': manufacturer,
-            'price': price,
-            'category': category,
-            'fuelType': fuelType,
-            'transmission': transmission,
             'color': color,
-            'mileage': mileage
+            'transmission': transmission,
+            'fuelType': fuelType,
+            'category': category
         };
+
         let foundVehiclesIdsBySearch = [];
-        let foundAdvertsByLocation = [];
 
         data.vehicleData.getFilteredVehicles(query)
             .then(vehicles => {
@@ -46,9 +48,90 @@ module.exports = data => {
                 });
             }).catch((err) => console.log(err));
     }
+
+    function basicSearchResultsYear(req, res, next) {
+        let manufactureDateFrom = req.body.manufactureDateFrom,
+            manufactureDateTo = req.body.manufactureDateTo;
+
+        let query = {
+            'manufactureDateFrom': manufactureDateFrom,
+            'manufactureDateTo': manufactureDateTo
+        };
+        let foundVehiclesIdsBySearch = [];
+
+        data.vehicleData.getFilteredVehiclesYear(query)
+            .then(vehicles => {
+                Object.keys(vehicles).forEach(function(key) {
+                    let currentVehicleId = vehicles[key]["_id"];
+                    foundVehiclesIdsBySearch.push(currentVehicleId);
+                });
+                return data.advertData.getAdvertByVehicleIds(foundVehiclesIdsBySearch);
+            }).then(adverts => {
+                res.render("search/search-results", {
+                    adverts: adverts,
+                    user: req.user
+                });
+            }).catch((err) => console.log(err));
+    }
+
+    function basicSearchResultsPrice(req, res, next) {
+        let fromPrice = req.body.fromPrice,
+            toPrice = req.body.toPrice;
+
+        let query = {
+            'fromPrice': fromPrice,
+            'toPrice': toPrice
+        };
+        let foundVehiclesIdsBySearch = [];
+
+        data.vehicleData.getFilteredVehiclesPrice(query)
+            .then(vehicles => {
+                Object.keys(vehicles).forEach(function(key) {
+                    let currentVehicleId = vehicles[key]["_id"];
+                    foundVehiclesIdsBySearch.push(currentVehicleId);
+                });
+                return data.advertData.getAdvertByVehicleIds(foundVehiclesIdsBySearch);
+            }).then(adverts => {
+                res.render("search/search-results", {
+                    adverts: adverts,
+                    user: req.user
+                });
+            }).catch((err) => console.log(err));
+    }
+
+    function basicSearchResultsMileage(req, res, next) {
+        let mileageFrom = req.body.mileageFrom,
+            mileageTo = req.body.mileageTo;
+
+        let query = {
+            'mileageFrom': mileageFrom,
+            'mileageTo': mileageTo
+        };
+        let foundVehiclesIdsBySearch = [];
+
+        data.vehicleData.getFilteredVehiclesMileage(query)
+            .then(vehicles => {
+                Object.keys(vehicles).forEach(function(key) {
+                    let currentVehicleId = vehicles[key]["_id"];
+                    foundVehiclesIdsBySearch.push(currentVehicleId);
+                });
+                return data.advertData.getAdvertByVehicleIds(foundVehiclesIdsBySearch);
+            }).then(adverts => {
+                res.render("search/search-results", {
+                    adverts: adverts,
+                    user: req.user
+                });
+            }).catch((err) => console.log(err));
+    }
+
     return {
         getBasicSearch,
-        getAdvancedSearch,
-        basicSearchResults
+        getSearchByYear,
+        getSearchByPrice,
+        getSearchMileage,
+        basicSearchResults,
+        basicSearchResultsYear,
+        basicSearchResultsPrice,
+        basicSearchResultsMileage
     }
 }
