@@ -1,0 +1,52 @@
+extends ../_layout
+block content
+    a(href="/search/basic" class="right") Go back to search
+    h5 Quick Search
+    div(class="row")
+        form(id="quick-search" name="quick-search" method="post" class="col s12")
+            div(class="row")
+                div(class="input-field col s6" )
+                    select(name="mileageFrom" class="browser-default  grey lighten-3") 
+                        option(selected="" value="") From Mileage 
+                        option(value="500") 500 
+                        option(value="1000") 1000
+                        option(value="2000") 2000
+                        option(value="3000") 3000
+                        option(value="4000") 4000
+                        option(value="5000") 5000
+                        option(value="6000") 6000
+                        option(value="7000") 7000
+                        option(value="8000") 8000
+                        option(value="9000") 9000
+                        option(value="10000") 10 000
+                        option(value="15000") 15 000
+                        option(value="20000") 20 000
+                        option(value="25000") 25 000
+                        option(value="30000") 30 000
+                        option(value="35000") 35 000
+                        option(value="40000") 40 000
+                        option(value="45000") 45 000
+                        option(value="50000") 50 000
+                div(class="input-field col s6" )      
+                    select(name="mileageTo" class="browser-default  grey lighten-3") 
+                        option(selected="" value="") To Mileage 
+                        option(value="50000") 50 000
+                        option(value="45000") 45 000
+                        option(value="40000") 40 000
+                        option(value="35000") 35 000
+                        option(value="30000") 25 000
+                        option(value="25000") 20 000
+                        option(value="15000") 15 000
+                        option(value="10000") 10 000
+                        option(value="9000") 9000
+                        option(value="8000") 8000
+                        option(value="7000") 7000
+                        option(value="6000") 6000
+                        option(value="5000") 5000
+                        option(value="4000") 4000
+                        option(value="3000") 3000
+                        option(value="2000") 2000
+                        option(value="1000") 1000
+                        option(value="500") 500
+            button(type="submit" class="waves-effect waves-dark btn right") Search!
+                i(class="material-icons tiny right") search
