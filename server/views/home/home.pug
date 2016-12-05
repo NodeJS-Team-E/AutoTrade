@@ -1,18 +1,18 @@
 extends ../_layout
 
 block content
-    div(style="margin-top:15px; margin-left:5px")                    
+    div(class="left")                    
         form(role='search', action="/search" method="get")
-            button.btn.waves-effect.waves-light(type="submit") search user
-            div.row
-                div.col.s3
-                    div.row                        
-                        input#search-input.input-field.col.s12(type="text" class="search-input" name="username" placeholder='Find user' )
-    h4(class="center-align") Borat's Autotrade - Kazakhstan's finest deals, is nice!
-        div(class="container")
-                img.borat-logo(src='http://i67.tinyprsic.com/2vu0uj6.png')
-                br
-                a(href="/search/basic" class="waves-effect waves-dark btn center") Search Deals         
+            button.btn.waves-effect.waves-light.left.tiny(type="submit") search user
+            div.row.center
+                div.col.s6
+                    div.row.center                        
+                        input#search-input.input-field.col.s8(type="text" class="search-input" name="username" placeholder='Find' )
+    h4(class="left-align" style="margin-left:5em;padding-left:5em;") Borat's Autotrade - Kazakhstan's finest deals, is nice!
+    div(class="container center")
+        img.borat-logo(src='https://s14.postimg.org/evyaynszl/great_success_brandlive.png')
+        br
+        a(href="/search/basic" class="waves-effect waves-dark btn center") Search Deals          
     br
     h5(class="left-align") Newest Adverts:
     include ../adverts/adverts-list-sorted.pug
