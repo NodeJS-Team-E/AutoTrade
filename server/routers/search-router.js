@@ -7,14 +7,17 @@ module.exports = function({ app, controller }) {
     router
         .get("/basic", controller.getBasicSearch)
         .post("/basic", controller.basicSearchResults)
-        .get("/advanced", controller.getAdvancedSearch)
+        .get("/basic-year", controller.getSearchByYear)
+        .post("/basic-year", controller.basicSearchResultsYear)
+        .get("/basic-price", controller.getSearchByPrice)
+        .post("/basic-price", controller.basicSearchResultsPrice)
+        .get("/basic-mileage", controller.getSearchMileage)
+        .post("/basic-mileage", controller.basicSearchResultsMileage)
         .get("/", (req, res) => {
             let username = req.query.username;
             let urlToRedirect = `/users/${username}`;
             res.redirect(urlToRedirect);
         });
-
-
 
     app.use("/search", router);
 
