@@ -68,6 +68,37 @@ module.exports = function(User) {
         });
     }
 
+    function allUsersWithPagination(pageNumber = 0, pageSize = 5) {
+        const getPage = new Promise((resolve, reject) => {
+            User.find().populate("adverts").populate("messages")
+                .skip(pageNumber * pageSize)
+                .limit(pageSize)
+                .exec((err, users) => {
+                    if (err) {
+                        return reject(err);
+                    }
+
+                    return resolve(users);
+                });
+        });
+
+        const getCount = new Promise((resolve, reject) => {
+            User.count((err, size) => {
+                if (err) {
+                    return reject(err);
+                }
+
+                const pageCount = Math.ceil(size / pageSize);
+                return resolve(pageCount);
+            });
+        });
+
+        return Promise.all([
+            getPage,
+            getCount
+        ]);
+    }
+
     function updateUserImage(user, newImageUrl) {
         return new Promise((resolve, reject) => {
             User.update({
@@ -148,6 +179,7 @@ module.exports = function(User) {
         });
     }
 
+
     function getAllUsernames() {
         return new Promise((resolve, reject) => {
             User.find({}, "username", (err, usernames) => {
@@ -172,6 +204,7 @@ module.exports = function(User) {
         updateUser,
         addAdvert,
         addMessage,
+        allUsersWithPagination,
         getAllUsernames
     };
 };

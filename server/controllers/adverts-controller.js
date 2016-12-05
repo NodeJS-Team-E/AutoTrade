@@ -48,15 +48,15 @@ module.exports = data => {
             });
     }
 
-    function getAllAdverts(req, res) {
-        data.advertData.all()
-            .then(adverts => {
-                res.render("adverts/adverts-list", {
-                    adverts: adverts,
-                    user: req.user
-                });
-            }).catch((err) => res.status(404).json(err));
-    }
+    /* function getAllAdverts(req, res) {
+         data.advertData.all()
+             .then(adverts => {
+                 res.render("adverts/adverts-list", {
+                     adverts: adverts,
+                     user: req.user
+                 });
+             }).catch((err) => res.status(404).json(err));
+     }*/
 
     function getAdvertById(req, res) {
         data.advertData.getAdvertById(req.params.id)
@@ -114,6 +114,41 @@ module.exports = data => {
                     user: req.user
                 });
             }).catch((err) => console.log(err));
+    }
+
+    function getAllAdverts(req, res) {
+        const page = +req.query.page || 0;
+        const size = +req.query.size || 3;
+
+        data.advertData.allWithPagination(page, size)
+            .then(([adverts, pageCount]) => {
+                if (pageCount < page) {
+                    return res.redirect(`/adverts?page=${pageCount - 1}&size=${size}`);
+                }
+
+                const pagination = {
+                    active: +pageCount > 1,
+                    pageSize: size,
+                    previous: {
+                        active: +page > 0,
+                        value: +page - 1
+                    },
+                    next: {
+                        active: +page < +pageCount - 1,
+                        value: +page + 1
+                    }
+                };
+                const user = req.user;
+                return res.render("adverts/adverts-list", {
+                    result: {
+                        adverts,
+                        user,
+                        pagination
+                    }
+                });
+            }).catch((err) => {
+                res.send(err.message);
+            });
     }
 
     return {

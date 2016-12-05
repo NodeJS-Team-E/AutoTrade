@@ -47,7 +47,6 @@ module.exports = function(Advert) {
         let location = options.location;
         return new Promise((resolve, reject) => {
             Advert.find({ 'location': location }, (err, advert) => {
-                //console.log(advert);
                 if (err) {
                     return reject(err);
                 }
@@ -68,9 +67,9 @@ module.exports = function(Advert) {
         });
     }
 
-    function getAllAdvertsWithPagination(pageNumber = 0, pageSize = 5) {
+    function allWithPagination(pageNumber = 0, pageSize = 5) {
         const getPage = new Promise((resolve, reject) => {
-            Advert.find()
+            Advert.find().populate('vehicle').populate("postedBy")
                 .skip(pageNumber * pageSize)
                 .limit(pageSize)
                 .exec((err, adverts) => {
@@ -113,12 +112,14 @@ module.exports = function(Advert) {
 
     function sortByNewlyCreated() {
         let promise = new Promise((resolve, reject) => {
-            Advert.find().sort({ 'postedOn': -1 }).populate('vehicle').populate("postedBy")
+            Advert.find().sort({ 'postedOn': -1 })
+            .limit(5)
+            .populate('vehicle')
+            .populate("postedBy")
                 .exec((err, res) => {
                     if (err) {
                         return reject(err);
                     }
-                    // console.log(res);
                     return resolve(res);
                 });
         });
@@ -145,7 +146,7 @@ module.exports = function(Advert) {
         findByLocation,
         all,
         getAdvertById,
-        getAllAdvertsWithPagination,
+        allWithPagination,
         addComment,
         sortByNewlyCreated,
         getAdvertByVehicleIds

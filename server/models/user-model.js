@@ -38,7 +38,12 @@ const userSchema = mongoose.Schema({
         require: requiredMessage
     },
     salt: String,
-    password: String,
+    password: {
+        type: String,
+        require: requiredMessage,
+        minlength: 6,
+        maxlength: 50
+    },
     hashPass: String,
     messages: [{
         type: Schema.Types.ObjectId,
